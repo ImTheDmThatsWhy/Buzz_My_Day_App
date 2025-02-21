@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 // Make a schema with data properties
 const CoffeeSchema = new mongoose.Schema({
+    _coffeeId: { type: String, index: true },
     name: { type: String, required: true },
     brand: String,
     type: String,
