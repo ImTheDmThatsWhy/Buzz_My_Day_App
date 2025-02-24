@@ -1,4 +1,4 @@
-const Coffee = require("../models/coffee_model");
+const Coffee = require("../models/coffeeModel");
 
 async function getCoffees() {
     const coffees = await Coffee.find();
@@ -16,7 +16,7 @@ async function createCoffee(coffee) {
 }
 
 async function updateCoffee(CoffeeId, coffee) {
-    const updatedCoffee = await Category.findByIdandUpdate(coffeeId, coffee, {
+    const updatedCoffee = await Coffee.findByIdandUpdate(coffeeId, coffee, {
         new: true,
     });
     return updatedCoffee;
