@@ -39,3 +39,12 @@ postRouter.post("/", async (req, res) => {
     const newPost = await createPost(bodyData);
     res.status(201).json(newPost);
 });
+
+//patch posts
+postRouter.patch("/:postId", async (req, res) => {
+    const bodyData = {
+        title: req.body.title,
+        body: req.body.body,
+        is_published: req.body.is_published,
+    };
+});
