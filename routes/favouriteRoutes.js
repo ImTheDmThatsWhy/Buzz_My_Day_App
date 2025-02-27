@@ -8,7 +8,7 @@ const {
     deleteFavourite,
 } = require("../controllers/favourite_controller");
 const favouriteRouter = express.Router();
-
+//get all favourites
 favouriteRouter.get("/", async (req, res) => {
     const favourites = await getFavourites();
     res.json(favourites);

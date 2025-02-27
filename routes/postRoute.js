@@ -30,10 +30,10 @@ postRouter.get("/: postId", async (req, res) => {
 // Post
 postRouter.post("/", async (req, res) => {
     const bodyData = {
+        displayname: req.body.displayname,
         title: req.body.title,
-        body: req.body.body,
-        is_published: req.body.is_published,
-        user_id: req.userId,
+        description: req.body.description,
+        Date: req.body.Date,
     };
     const newPost = await createPost(bodyData);
     res.status(201).json(newPost);
@@ -42,11 +42,10 @@ postRouter.post("/", async (req, res) => {
 //patch posts
 postRouter.patch("/:postId", async (req, res) => {
     const bodyData = {
+        displayname: req.body.displayname,
         title: req.body.title,
-        body: req.body.body,
-        is_published: req.body.is_published,
-        post_id: req.body_post_id,
-        user_id: req.userId,
+        description: req.body.description,
+        Date: req.body.Date,
     };
     const updatedPost = await updatePost(
         req.params.postId,
