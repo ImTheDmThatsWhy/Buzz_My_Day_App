@@ -27,18 +27,17 @@ reviewRouter.get("/: reviewId", async (req, res) => {
     }
 });
 // post create review
-reviewRouter /
-    postMessage("/", async (req, res) => {
-        const bodyData = {
-            displayname: req.body.displayname,
-            description: req.body.description,
-            rating: req.body.rating,
-            coffee_id: req.body.coffee_id,
-            account_id: req.body.account_id,
-        };
-        const newReview = await createReview(bodyData);
-        res.status(201).json(newReview);
-    });
+reviewRouter.post("/", async (req, res) => {
+    const bodyData = {
+        displayname: req.body.displayname,
+        description: req.body.description,
+        rating: req.body.rating,
+        coffee_id: req.body.coffee_id,
+        account_id: req.body.account_id,
+    };
+    const newReview = await createReview(bodyData);
+    res.status(201).json(newReview);
+});
 //patch review
 reviewRouter.patch("/:reviewId", async (req, res) => {
     const bodyData = {
