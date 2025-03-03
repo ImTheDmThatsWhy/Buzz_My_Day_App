@@ -1,5 +1,5 @@
 const express = require("express");
-const accountRouter = require("./accountRoute");
+
 
 module.exports = {
     getAccounts,
@@ -8,6 +8,7 @@ module.exports = {
     updateAccount,
     deleteAccount,
 } = require("../controllers/account_controller");
+
 
 const accountRouter = express.Router();
 // get accounts
@@ -41,7 +42,7 @@ accountRouter.post("/", async (req, res) => {
 });
 // update account
 
-accountRouterRouter.patch("/:accountId", async (req, res) => {
+accountRouter.patch("/:accountId", async (req, res) => {
     const bodyData = {
         email: req.body.email,
         displayname: req.body.displayname,
@@ -74,3 +75,5 @@ accountRouter.delete("/:accountId", async (req, res) => {
         });
     }
 });
+
+

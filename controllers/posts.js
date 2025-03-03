@@ -1,4 +1,4 @@
-const Post = require("../models/PostModel");
+const Post = require("../models/postModel");
 const { findById } = require("../models/userLoginModel");
 
 async function getPosts() {

@@ -1,4 +1,4 @@
-const Review = require("../models/ReviewModel");
+const Review = require("../models/reviewsModel");
 const { findById } = require("../models/userLoginModel");
 
 async function getReviews() {

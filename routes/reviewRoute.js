@@ -6,7 +6,7 @@ module.exports = {
     createFavourite,
     updateFavourite,
     deleteFavourite,
-} = require("../controllers/reviews_controller");
+} = require("../controllers/reviews");
 
 const reviewRouter = express.Router();
 

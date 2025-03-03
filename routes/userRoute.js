@@ -1,4 +1,4 @@
-const express = require("ëxpress");
+const express = require("express");
 
 const { registerUser, loginUser } = require("../controllers/user_controller");
 
