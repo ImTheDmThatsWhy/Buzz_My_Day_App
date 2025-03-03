@@ -23,12 +23,9 @@ app.use(logger)
 
 
 
+
 app.use("/account", accountRouter)
-app.use("/coffee", coffeeRoutes)
-app.use("/favourite", favouriteRoutes) 
-app.use("/post", postRoutes)
-app.use("/review", reviewRoute)
-app.use("/user", userRoute)
+
 
 
 
@@ -37,3 +34,4 @@ app.listen(3000, async () => {
     await mongoose.connect("mongodb+srv://jackvassallo01:Xd39FxnSMQETljKV@cluster0.h2v5a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
     console.log("Database connected")
 })
+
