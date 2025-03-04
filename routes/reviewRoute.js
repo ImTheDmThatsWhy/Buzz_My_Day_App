@@ -7,6 +7,7 @@ module.exports = {
     updateFavourite,
     deleteFavourite,
 } = require("../controllers/reviews_controller");
+const authorization = require("../middleware/authorization");
 
 const reviewRouter = express.Router();
 
@@ -27,7 +28,7 @@ reviewRouter.get("/: reviewId", async (req, res) => {
     }
 });
 // post create review
-reviewRouter.post("/", async (req, res) => {
+reviewRouter.post("/", authorization, async (req, res) => {
     const bodyData = {
         displayname: req.body.displayname,
         description: req.body.description,
@@ -39,7 +40,7 @@ reviewRouter.post("/", async (req, res) => {
     res.status(201).json(newReview);
 });
 //patch review
-reviewRouter.patch("/:reviewId", async (req, res) => {
+reviewRouter.patch("/:reviewId", authorization, async (req, res) => {
     const bodyData = {
         displayname: req.body.displayname,
         description: req.body.description,
@@ -54,7 +55,7 @@ reviewRouter.patch("/:reviewId", async (req, res) => {
     );
 });
 // Delete review
-reviewRouter.delete("/:reviewId", async (req, res) => {
+reviewRouter.delete("/:reviewId", authorization, async (req, res) => {
     const deletedReview = await this.deleteReview(req.params.reviewId);
     if (deletedReview) {
         res.json(deletedReview);
