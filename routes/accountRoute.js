@@ -8,6 +8,8 @@ module.exports = {
     updateAccount,
     deleteAccount,
 } = require("../controllers/account_controller");
+// use middleware so users must be authorised before updating the account
+const authorization = require("../middleware/authorization");
 
 const accountRouter = express.Router();
 // get accounts
@@ -41,7 +43,7 @@ accountRouter.post("/", async (req, res) => {
 });
 // update account
 
-accountRouterRouter.patch("/:accountId", async (req, res) => {
+accountRouterRouter.patch("/:accountId", authorization, async (req, res) => {
     const bodyData = {
         email: req.body.email,
         displayname: req.body.displayname,
@@ -64,7 +66,7 @@ accountRouterRouter.patch("/:accountId", async (req, res) => {
         res.json(updatedAccount);
     }
 });
-accountRouter.delete("/:accountId", async (req, res) => {
+accountRouter.delete("/:accountId", authorization, async (req, res) => {
     const deletedReview = await deleteReview(req.params.accountId);
     if (deletedAccount) {
         res.json(deletedAccount);
