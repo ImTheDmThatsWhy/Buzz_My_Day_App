@@ -75,4 +75,4 @@ postRouter.delete("/:postId", async (req, res) => {
     }
 });
 
-exports = postRouter;
+module.exports = postRouter;

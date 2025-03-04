@@ -7,7 +7,7 @@ const mongoose = require("mongoose")
 const accountRouter = require("../routes/accountRoute")
 const coffeeRoutes = require("../routes/coffeeRoutes")
 const favouriteRoutes = require("../routes/favouriteRoutes")
-const postRoutes = require("../routes/postRoute")
+const postRoute = require("../routes/postRoute")
 const reviewRoute = require("../routes/reviewRoute")
 const userRoute = require("../routes/userRoute")
 const logger = require("../middlewares/logger")
@@ -25,7 +25,11 @@ app.use(logger)
 
 
 app.use("/account", accountRouter)
-
+app.use("/coffee", coffeeRoutes)
+app.use("/favourite", favouriteRoutes) 
+app.use("/post", postRoute)
+app.use("/review", reviewRoute)
+app.use("/user", userRoute)
 
 
 
