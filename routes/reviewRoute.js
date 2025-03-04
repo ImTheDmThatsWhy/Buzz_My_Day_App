@@ -1,11 +1,11 @@
 const express = require("express");
 
-module.exports = {
-    getFavourites,
-    getFavourite,
-    createFavourite,
-    updateFavourite,
-    deleteFavourite,
+const {
+    getReviews,
+    getReview,
+    createReview,
+    updateReview,
+    deleteReview,
 } = require("../controllers/reviews");
 
 const reviewRouter = express.Router();
@@ -47,7 +47,7 @@ reviewRouter.patch("/:reviewId", async (req, res) => {
         coffee_id: req.body.coffee_id,
         account_id: req.body.account_id,
     };
-    const updatedReview = await this.updateReview(
+    const updateReview = await this.updateReview(
         req.params.reviewId,
         bodyData,
         req.displayname
@@ -64,3 +64,7 @@ reviewRouter.delete("/:reviewId", async (req, res) => {
         });
     }
 });
+
+
+
+module.exports = reviewRouter;

@@ -5,8 +5,9 @@ const CommentSchema = mongoose.Schema({
 })
 
 const PostSchema = mongoose.Schema({
-    title: String,
-    body: String,
+    title: { type: String, required: true },
+    content: { type: String, required: true },
+    author: { type: String, required: true },
     is_published: Boolean,
     category_id: {
         type: mongoose.Types.ObjectId,
@@ -19,13 +20,8 @@ const PostSchema = mongoose.Schema({
     }
 })
 
-
-
 const Comment = mongoose.model("Comment", CommentSchema)
 
 const Post = mongoose.model("Post", PostSchema)
 
-module.exports = {
-    Comment,
-    Post
-}
+module.exports = Post

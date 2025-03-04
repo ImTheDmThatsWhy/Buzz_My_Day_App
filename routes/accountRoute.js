@@ -1,7 +1,6 @@
 const express = require("express");
 
-
-module.exports = {
+const {
     getAccounts,
     getAccount,
     createAccount,
@@ -9,25 +8,26 @@ module.exports = {
     deleteAccount,
 } = require("../controllers/account_controller");
 
-
 const accountRouter = express.Router();
+
 // get accounts
-accountRouter.get("/", async (requestAnimationFrame, res) => {
-    const account = await getAccounts();
+accountRouter.get("/", async (req, res) => {
+    const accounts = await getAccounts();
     res.json(accounts);
 });
 
 // get single account
-accountRouter.get("/: accountId", async (req, res) => {
-    const account = await this.getAccount(req.params.accountId);
+accountRouter.get("/:accountId", async (req, res) => {
+    const account = await getAccount(req.params.accountId);
     if (account) {
         res.json(account);
     } else {
         res.status(404).json({
-            error: `account with id ${req.params.accountId} not found`,
+            error: `Account with id ${req.params.accountId} not found`,
         });
     }
 });
+
 // create an account
 accountRouter.post("/", async (req, res) => {
     const bodyData = {
@@ -40,8 +40,8 @@ accountRouter.post("/", async (req, res) => {
     const newAccount = await createAccount(bodyData);
     res.status(201).json(newAccount);
 });
-// update account
 
+// update account
 accountRouter.patch("/:accountId", async (req, res) => {
     const bodyData = {
         email: req.body.email,
@@ -55,18 +55,18 @@ accountRouter.patch("/:accountId", async (req, res) => {
         bodyData,
         req.displayname
     );
-    if (!updatedAccount.error) {
+    if (!updatedAccount) {
         res.status(404).json({
-            error: `account with id ${req.params.accountId} not found`,
+            error: `Account with id ${req.params.accountId} not found`,
         });
-    } else if (updatedAccount.error) {
-        res.status(403).json(updatedAccount);
     } else {
         res.json(updatedAccount);
     }
 });
+
+// delete account
 accountRouter.delete("/:accountId", async (req, res) => {
-    const deletedReview = await deleteReview(req.params.accountId);
+    const deletedAccount = await deleteAccount(req.params.accountId);
     if (deletedAccount) {
         res.json(deletedAccount);
     } else {
@@ -76,4 +76,5 @@ accountRouter.delete("/:accountId", async (req, res) => {
     }
 });
 
+module.exports = accountRouter;
 
