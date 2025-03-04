@@ -20,4 +20,4 @@ function authorization(req, res, next) {
         return res.status(401).json({ error: "Unauthenticated Token" });
     }
 }
-module.exports = authentication;
+module.exports = authorization;
