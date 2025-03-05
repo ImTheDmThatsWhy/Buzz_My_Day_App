@@ -50,7 +50,7 @@ postRouter.patch("/:postId", async (req, res) => {
     const updatedPost = await updatePost(
         req.params.postId,
         bodyData,
-        req.userId
+        req.body.author
     );
     if (!updatedPost) {
         res.status(404).json({
