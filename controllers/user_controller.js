@@ -11,21 +11,20 @@ async function registerUser(user) {
     const hashedPassword = await bcrypt.hash(user.password, 10);
     //user creation
     const UserCreated = await User.create({
-        name: user.name,
+        username: user.username,
         email: user.email,
         password: hashedPassword,
-        is_admin: false,
     });
     //create jsonwebtoken
     const payload = {
         id: UserCreated._id,
     };
-    const token = jwt.sign(payload, "confidential");
+    const token = jwt.sign(payload, "secret");
     return { token: token, user_id: UserCreated._id };
 }
 async function loginUser(user) {
     // check existence of user
-    const extinguisher = await User.findOne({ email: user.email });
+    const existingUser = await User.findOne({ email: user.email });
     if (!existingUser) {
         return { error: "Incorrect email or password" };
     }
@@ -38,7 +37,7 @@ async function loginUser(user) {
     const payload = {
         id: existingUser._id,
     };
-    const token = jwt.sign(payload, "confidential");
+    const token = jwt.sign(payload, "secret");
     return { token, user_id: existingUser._id };
 }
 
