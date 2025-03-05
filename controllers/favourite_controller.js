@@ -6,7 +6,7 @@ async function getFavourites() {
 }
 
 async function getFavourite(favouriteId) {
-    const favourite = await Favourite.findbyId(favouriteId);
+    const favourite = await Favourite.findById(favouriteId);
     return favourite;
 }
 
@@ -16,7 +16,7 @@ async function createFavourite(favourite) {
 }
 
 async function updateFavourite(favouriteId, favourite) {
-    const updatedFavourite = await Favourite.findByIdandUpdate(
+    const updatedFavourite = await Favourite.findByIdAndUpdate(
         favouriteId,
         favourite,
         {
