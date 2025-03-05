@@ -15,14 +15,14 @@ async function createCoffee(coffee) {
     return newCoffee;
 }
 
-async function updateCoffee(CoffeeId, coffee) {
+async function updateCoffee(coffeeId, coffee) {
     const updatedCoffee = await Coffee.findByIdandUpdate(coffeeId, coffee, {
         new: true,
     });
     return updatedCoffee;
 }
 async function deleteCoffee(coffeeId) {
-    const deletedCoffee = await Coffee.findByIdAndDelete(coffeeID);
+    const deletedCoffee = await Coffee.findByIdAndDelete(coffeeId);
     return deletedCoffee;
 }
 module.exports = {
