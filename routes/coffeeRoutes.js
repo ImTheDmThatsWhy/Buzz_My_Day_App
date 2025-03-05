@@ -27,14 +27,42 @@ coffeeRouter.get("/:coffeeId", async (req, res) => {
 
 coffeeRouter.post("/", async (req, res) => {
     const bodyData = {
-        title: req.body.title,
+        name: req.body.name,
+        brand: req.body.brand,
+        type: req.body.type,
         description: req.body.description,
+        cost: req.body.cost,
+        rating: req.body.rating,
     };
     const newCoffee = await createCoffee(bodyData);
     res.status(201).json(newCoffee);
 });
 
 coffeeRouter.patch("/:coffeeId", async (req, res) => {
+    const bodyData = {
+        name: req.body.name,
+        brand: req.body.brand,
+        type: req.body.type,
+        description: req.body.description,
+        cost: req.body.cost,
+        rating: req.body.rating,
+    };
+    const updatedCoffee = await updateCoffee(
+        req.params.coffeeId,
+        bodyData,
+        req.userId
+    );
+    if (!updatedCoffee) {
+        res.status(404).json({
+            error: `coffee with id ${req.params.coffeeId} not found`,
+        });
+    } else if (updatedCoffee.error) {
+        res.status(403).json(updatedCoffee);
+    } else {
+        res.json(updatedCoffee);
+    }
+});
+coffeeRouter.delete("/:coffeeId", async (req, res) => {
     const deletedCoffee = await deleteCoffee(req.params.coffeeId);
     if (deletedCoffee) {
         res.json(deletedCoffee);
