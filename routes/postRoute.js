@@ -7,7 +7,7 @@ const {
     updatePost,
     deletePost,
 } = require("../controllers/postControllers");
-
+const authorization = require("../middleware/authorization");
 const postRouter = express.Router();
 // Get all posts
 postRouter.get("/", async (req, res) => {
@@ -28,7 +28,7 @@ postRouter.get("/: postId", async (req, res) => {
 });
 
 // Post
-postRouter.post("/", async (req, res) => {
+postRouter.post("/", authorization, async (req, res) => {
     const bodyData = {
         displayname: req.body.displayname,
         title: req.body.title,
@@ -40,7 +40,7 @@ postRouter.post("/", async (req, res) => {
 });
 
 //patch posts
-postRouter.patch("/:postId", async (req, res) => {
+postRouter.patch("/:postId", authorization, async (req, res) => {
     const bodyData = {
         displayname: req.body.displayname,
         title: req.body.title,
@@ -64,7 +64,7 @@ postRouter.patch("/:postId", async (req, res) => {
 });
 
 // Delete posts/id
-postRouter.delete("/:postId", async (req, res) => {
+postRouter.delete("/:postId", authorization, async (req, res) => {
     const deletedPost = await deletePost(req.params.postId);
     if (deletedPost) {
         res.json(deletedPost);

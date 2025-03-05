@@ -7,14 +7,16 @@ const {
     updateFavourite,
     deleteFavourite,
 } = require("../controllers/favourite_controller");
+const authorization = require("../middleware/authorization");
+
 const favouriteRouter = express.Router();
 //get all favourites
-favouriteRouter.get("/", async (req, res) => {
+favouriteRouter.get("/", authorization, async (req, res) => {
     const favourites = await getFavourites();
     res.json(favourites);
 });
 
-favouriteRouter.get("/:favouriteId", async (req, res) => {
+favouriteRouter.get("/:favouriteId", authorization, async (req, res) => {
     const favourite = await getFavourite(req.params.favouriteId);
     if (favourite) {
         res.json(favourite);
@@ -24,7 +26,7 @@ favouriteRouter.get("/:favouriteId", async (req, res) => {
         });
     }
 });
-favouriteRouter.post("/", async (req, res) => {
+favouriteRouter.post("/", authorization, async (req, res) => {
     const bodyData = {
         coffee_id: req.body.coffee_id,
         account_id: req.account_id,
@@ -32,7 +34,7 @@ favouriteRouter.post("/", async (req, res) => {
     const newFavourite = await createFavourite(bodyData);
     res.status(201).json(newFavourite);
 });
-favouriteRouter.patch("/:favouriteId", async (req, res) => {
+favouriteRouter.patch("/:favouriteId", authorization, async (req, res) => {
     const bodyData = {
         coffee_id: req.body.coffee_id,
         account_id: req.account_id,
@@ -53,7 +55,7 @@ favouriteRouter.patch("/:favouriteId", async (req, res) => {
     }
 });
 // Delete favourite
-favouriteRouter.delete("/:favouriteId", async (req, res) => {
+favouriteRouter.delete("/:favouriteId", authorization, async (req, res) => {
     const deletedFavourite = await deleteFavourite(req.params.favouriteId);
     if (deletedFavourite) {
         res.json(deletedFavourite);
