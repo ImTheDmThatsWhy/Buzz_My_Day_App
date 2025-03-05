@@ -20,7 +20,7 @@ coffeeRouter.get("/:coffeeId", async (req, res) => {
         res.json(coffee);
     } else {
         res.status(404).json({
-            error: `Category with id ${req.params.categoryId} not found`,
+            error: `Coffee with id ${req.params.coffeeId} not found`,
         });
     }
 });
