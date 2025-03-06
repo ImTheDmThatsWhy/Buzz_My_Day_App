@@ -32,7 +32,7 @@ postRouter.post("/", async (req, res) => {
     const bodyData = {
         title: req.body.title,
         content: req.body.content,
-        author: req.body.author,
+        displayname: req.body.displayname,
         category_id: req.body.category_id,
     };
     const newPost = await createPost(bodyData);
@@ -44,13 +44,13 @@ postRouter.patch("/:postId", async (req, res) => {
     const bodyData = {
         title: req.body.title,
         content: req.body.content,
-        author: req.body.author,
+        displayname: req.body.displayname,
         category_id: req.body.category_id,
     };
     const updatedPost = await updatePost(
         req.params.postId,
         bodyData,
-        req.body.author
+        req.body.displayname
     );
     if (!updatedPost) {
         res.status(404).json({

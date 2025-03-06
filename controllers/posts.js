@@ -16,9 +16,9 @@ async function createPost(post) {
     return newPost;
 }
 
-async function updatePost(postId, post, author) {
+async function updatePost(postId, post, displayname) {
     const postToUpdate = await Post.findById(postId);
-    if (postToUpdate.author.toString() !== author) {
+    if (postToUpdate.displayname.toString() !== displayname) {
         return { error: "Action not allowed" };
     }
     const updatedPost = await Post.findByIdAndUpdate(postId, post, {
