@@ -22,6 +22,7 @@ async function registerUser(user) {
     const token = jwt.sign(payload, "secret");
     return { token: token, user_id: UserCreated._id };
 }
+// }
 async function loginUser(user) {
     // check existence of user
     const existingUser = await User.findOne({ email: user.email });

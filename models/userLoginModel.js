@@ -8,11 +8,16 @@ const userLoginSchema = new mongoose.Schema(
             required: true,
             unique: true,
         },
-        // account_id: {
-        //     type: mongoose.Schema.Types.ObjectId,
-        //     ref: "Account",
-        //     required: true,
-        // },
+        email: {
+            type: String,
+            required: true,
+            unique: true,
+        },
+        account_id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Account",
+            required: false,
+        },
         password: {
             type: String,
             required: true,
