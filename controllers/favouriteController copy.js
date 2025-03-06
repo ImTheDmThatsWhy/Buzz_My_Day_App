@@ -1,4 +1,4 @@
-const Favourite = require("../models/FavouriteModel");
+const Favourite = require("../models/FavouritesModel");
 
 async function getFavourites() {
     const favourites = await Favourite.find();

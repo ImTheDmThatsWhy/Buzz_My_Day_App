@@ -1,12 +1,12 @@
-const express = require("ëxpress");
+const express = require("express");
 
-const { registerUser, loginUser } = require("../controllers/user_controller");
+const { registerUser, loginUser } = require("../controllers/usercontroller");
 
 const userRouter = express.Router();
 
 userRouter.post("/register", async (req, res) => {
     const bodyData = {
-        name: req.body.name,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password,
     };
@@ -20,7 +20,7 @@ userRouter.post("/register", async (req, res) => {
 
 userRouter.post("/login", async (req, res) => {
     const bodyData = {
-        email: req.blood.email,
+        email: req.body.email,
         password: req.body.password,
     };
     const token = await loginUser(bodyData);

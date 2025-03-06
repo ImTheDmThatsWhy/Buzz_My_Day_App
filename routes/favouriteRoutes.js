@@ -6,17 +6,15 @@ const {
     createFavourite,
     updateFavourite,
     deleteFavourite,
-} = require("../controllers/favourite_controller");
-const authorization = require("../middleware/authorization");
-
+} = require("../controllers/favouriteController copy");
 const favouriteRouter = express.Router();
 //get all favourites
-favouriteRouter.get("/", authorization, async (req, res) => {
+favouriteRouter.get("/", async (req, res) => {
     const favourites = await getFavourites();
     res.json(favourites);
 });
 
-favouriteRouter.get("/:favouriteId", authorization, async (req, res) => {
+favouriteRouter.get("/:favouriteId", async (req, res) => {
     const favourite = await getFavourite(req.params.favouriteId);
     if (favourite) {
         res.json(favourite);
@@ -26,18 +24,18 @@ favouriteRouter.get("/:favouriteId", authorization, async (req, res) => {
         });
     }
 });
-favouriteRouter.post("/", authorization, async (req, res) => {
+favouriteRouter.post("/", async (req, res) => {
     const bodyData = {
         coffee_id: req.body.coffee_id,
-        account_id: req.account_id,
+        account_id: req.body.account_id,
     };
     const newFavourite = await createFavourite(bodyData);
     res.status(201).json(newFavourite);
 });
-favouriteRouter.patch("/:favouriteId", authorization, async (req, res) => {
+favouriteRouter.patch("/:favouriteId", async (req, res) => {
     const bodyData = {
         coffee_id: req.body.coffee_id,
-        account_id: req.account_id,
+        account_id: req.body.account_id,
     };
     const updatedFavourite = await updateFavourite(
         req.params.favouriteId,
@@ -55,7 +53,7 @@ favouriteRouter.patch("/:favouriteId", authorization, async (req, res) => {
     }
 });
 // Delete favourite
-favouriteRouter.delete("/:favouriteId", authorization, async (req, res) => {
+favouriteRouter.delete("/:favouriteId", async (req, res) => {
     const deletedFavourite = await deleteFavourite(req.params.favouriteId);
     if (deletedFavourite) {
         res.json(deletedFavourite);
