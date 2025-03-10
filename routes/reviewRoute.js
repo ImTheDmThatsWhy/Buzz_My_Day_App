@@ -1,5 +1,6 @@
 const express = require("express");
 
+<<<<<<< HEAD
 module.exports = {
     getFavourites,
     getFavourite,
@@ -8,6 +9,16 @@ module.exports = {
     deleteFavourite,
 } = require("../controllers/reviews_controller");
 const authorization = require("../middleware/authorization");
+=======
+const {
+    getReviews,
+    getReview,
+    createReview,
+    updateReview,
+    deleteReview,
+} = require("../controllers/reviews");
+const authorization = require("../middlewares/authorization");
+>>>>>>> index
 
 const reviewRouter = express.Router();
 
@@ -17,8 +28,8 @@ reviewRouter.get("/", async (req, res) => {
     res.json(reviews);
 });
 // get single review
-reviewRouter.get("/: reviewId", async (req, res) => {
-    const review = await this.getReview(req.params.reviewId);
+reviewRouter.get("/:reviewId", async (req, res) => {
+    const review = await getReview(req.params.reviewId);
     if (review) {
         res.json(review);
     } else {
@@ -48,7 +59,7 @@ reviewRouter.patch("/:reviewId", authorization, async (req, res) => {
         coffee_id: req.body.coffee_id,
         account_id: req.body.account_id,
     };
-    const updatedReview = await this.updateReview(
+    const updatedReview = await updateReview(
         req.params.reviewId,
         bodyData,
         req.displayname
@@ -56,7 +67,11 @@ reviewRouter.patch("/:reviewId", authorization, async (req, res) => {
 });
 // Delete review
 reviewRouter.delete("/:reviewId", authorization, async (req, res) => {
+<<<<<<< HEAD
     const deletedReview = await this.deleteReview(req.params.reviewId);
+=======
+    const deletedReview = await deleteReview(req.params.reviewId);
+>>>>>>> index
     if (deletedReview) {
         res.json(deletedReview);
     } else {
@@ -65,3 +80,5 @@ reviewRouter.delete("/:reviewId", authorization, async (req, res) => {
         });
     }
 });
+
+module.exports = reviewRouter;

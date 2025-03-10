@@ -27,8 +27,12 @@ coffeeRouter.get("/:coffeeId", async (req, res) => {
 
 coffeeRouter.post("/", async (req, res) => {
     const bodyData = {
-        title: req.body.title,
+        name: req.body.name,
+        brand: req.body.brand,
+        type: req.body.type,
         description: req.body.description,
+        cost: req.body.cost,
+        rating: req.body.rating,
     };
     const newCoffee = await createCoffee(bodyData);
     res.status(201).json(newCoffee);
@@ -36,8 +40,17 @@ coffeeRouter.post("/", async (req, res) => {
 
 coffeeRouter.patch("/:coffeeId", async (req, res) => {
     const bodyData = {
+<<<<<<< HEAD
         title: req.body.title,
         description: req.body.description,
+=======
+        name: req.body.name,
+        brand: req.body.brand,
+        type: req.body.type,
+        description: req.body.description,
+        cost: req.body.cost,
+        rating: req.body.rating,
+>>>>>>> index
     };
     const updatedCoffee = await updateCoffee(
         req.params.coffeeId,

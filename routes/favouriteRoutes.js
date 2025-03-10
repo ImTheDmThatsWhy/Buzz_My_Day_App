@@ -29,7 +29,7 @@ favouriteRouter.get("/:favouriteId", authorization, async (req, res) => {
 favouriteRouter.post("/", authorization, async (req, res) => {
     const bodyData = {
         coffee_id: req.body.coffee_id,
-        account_id: req.account_id,
+        account_id: req.body.account_id,
     };
     const newFavourite = await createFavourite(bodyData);
     res.status(201).json(newFavourite);
@@ -37,7 +37,7 @@ favouriteRouter.post("/", authorization, async (req, res) => {
 favouriteRouter.patch("/:favouriteId", authorization, async (req, res) => {
     const bodyData = {
         coffee_id: req.body.coffee_id,
-        account_id: req.account_id,
+        account_id: req.body.account_id,
     };
     const updatedFavourite = await updateFavourite(
         req.params.favouriteId,

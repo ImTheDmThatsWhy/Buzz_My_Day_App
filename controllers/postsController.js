@@ -1,4 +1,4 @@
-const Post = require("../models/PostModel");
+const Post = require("../models/postModel");
 const { findById } = require("../models/userLoginModel");
 
 async function getPosts() {
@@ -7,7 +7,7 @@ async function getPosts() {
 }
 
 async function getPost(postId) {
-    const post = await Post.findbyId(postId);
+    const post = await Post.findById(postId);
     return post;
 }
 
@@ -16,18 +16,18 @@ async function createPost(post) {
     return newPost;
 }
 
-async function updatePost(postId, post, userId) {
+async function updatePost(postId, post, displayname) {
     const postToUpdate = await Post.findById(postId);
-    if (postToUpdate.user_id.toString() !== userId) {
+    if (postToUpdate.displayname.toString() !== displayname) {
         return { error: "Action not allowed" };
     }
-    const updatedPost = await Post.findByIdandUpdate(PostId, Post, {
+    const updatedPost = await Post.findByIdAndUpdate(postId, post, {
         new: true,
     });
     return updatedPost;
 }
-async function deletePost(PostId) {
-    const deletedPost = await Post.findByIdAndDelete(PostID);
+async function deletePost(postId) {
+    const deletedPost = await Post.findByIdAndDelete(postId);
     return deletedPost;
 }
 module.exports = {

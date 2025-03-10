@@ -6,8 +6,13 @@ const {
     createPost,
     updatePost,
     deletePost,
+<<<<<<< HEAD
 } = require("../controllers/postControllers");
 const authorization = require("../middleware/authorization");
+=======
+} = require("../controllers/posts");
+
+>>>>>>> index
 const postRouter = express.Router();
 // Get all posts
 postRouter.get("/", async (req, res) => {
@@ -16,7 +21,7 @@ postRouter.get("/", async (req, res) => {
 });
 
 // get a single post
-postRouter.get("/: postId", async (req, res) => {
+postRouter.get("/:postId", async (req, res) => {
     const post = await getPost(req.params.postId);
     if (post) {
         res.json(post);
@@ -30,10 +35,10 @@ postRouter.get("/: postId", async (req, res) => {
 // Post
 postRouter.post("/", authorization, async (req, res) => {
     const bodyData = {
-        displayname: req.body.displayname,
         title: req.body.title,
-        description: req.body.description,
-        Date: req.body.Date,
+        content: req.body.content,
+        displayname: req.body.displayname,
+        category_id: req.body.category_id,
     };
     const newPost = await createPost(bodyData);
     res.status(201).json(newPost);
@@ -42,15 +47,15 @@ postRouter.post("/", authorization, async (req, res) => {
 //patch posts
 postRouter.patch("/:postId", authorization, async (req, res) => {
     const bodyData = {
-        displayname: req.body.displayname,
         title: req.body.title,
-        description: req.body.description,
-        Date: req.body.Date,
+        content: req.body.content,
+        displayname: req.body.displayname,
+        category_id: req.body.category_id,
     };
     const updatedPost = await updatePost(
         req.params.postId,
         bodyData,
-        req.userId
+        req.body.displayname
     );
     if (!updatedPost) {
         res.status(404).json({
@@ -75,4 +80,4 @@ postRouter.delete("/:postId", authorization, async (req, res) => {
     }
 });
 
-exports = postRouter;
+module.exports = postRouter;
