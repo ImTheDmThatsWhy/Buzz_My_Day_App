@@ -10,13 +10,8 @@ async function registerUser(user) {
     //create a hashed password 10 indicates 2^10 number of times password is hashed, the hashed password is stored in the database.
     const hashedPassword = await bcrypt.hash(user.password, 10);
     //user creation
-<<<<<<< HEAD:controllers/userController.js
     const userCreated = await User.create({
         name: user.name,
-=======
-    const UserCreated = await User.create({
-        username: user.username,
->>>>>>> index:controllers/user_controller.js
         email: user.email,
         password: hashedPassword,
     });
@@ -25,11 +20,7 @@ async function registerUser(user) {
         id: userCreated._id,
     };
     const token = jwt.sign(payload, "secret");
-<<<<<<< HEAD:controllers/userController.js
     return { token: token, user_id: userCreated._id };
-=======
-    return { token: token, user_id: UserCreated._id };
->>>>>>> index:controllers/user_controller.js
 }
 // }
 async function loginUser(user) {

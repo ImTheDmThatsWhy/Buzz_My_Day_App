@@ -7,7 +7,7 @@ const {
     updateReview,
     deleteReview,
 } = require("../controllers/reviewsController");
-const authorization = require("../middlewares/authorization");
+const authorization = require("../middleware/authorization");
 
 const reviewRouter = express.Router();
 

@@ -7,12 +7,10 @@ const favouriteRoutes = require("../routes/favouriteRoutes");
 const postRoute = require("../routes/postRoute");
 const reviewRoute = require("../routes/reviewRoute");
 const userRoute = require("../routes/userRoute");
-const logger = require("../middlewares/logger");
 
 const app = express();
 
 app.use(express.json());
-app.use(logger);
 
 app.use("/account", accountRouter);
 app.use("/coffee", coffeeRoutes);
