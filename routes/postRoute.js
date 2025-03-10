@@ -6,13 +6,8 @@ const {
     createPost,
     updatePost,
     deletePost,
-<<<<<<< HEAD
 } = require("../controllers/postControllers");
 const authorization = require("../middleware/authorization");
-=======
-} = require("../controllers/posts");
-
->>>>>>> index
 const postRouter = express.Router();
 // Get all posts
 postRouter.get("/", async (req, res) => {

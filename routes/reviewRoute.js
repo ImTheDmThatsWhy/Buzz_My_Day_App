@@ -1,15 +1,5 @@
 const express = require("express");
 
-<<<<<<< HEAD
-module.exports = {
-    getFavourites,
-    getFavourite,
-    createFavourite,
-    updateFavourite,
-    deleteFavourite,
-} = require("../controllers/reviews_controller");
-const authorization = require("../middleware/authorization");
-=======
 const {
     getReviews,
     getReview,
@@ -18,7 +8,6 @@ const {
     deleteReview,
 } = require("../controllers/reviews");
 const authorization = require("../middlewares/authorization");
->>>>>>> index
 
 const reviewRouter = express.Router();
 
@@ -67,11 +56,7 @@ reviewRouter.patch("/:reviewId", authorization, async (req, res) => {
 });
 // Delete review
 reviewRouter.delete("/:reviewId", authorization, async (req, res) => {
-<<<<<<< HEAD
-    const deletedReview = await this.deleteReview(req.params.reviewId);
-=======
     const deletedReview = await deleteReview(req.params.reviewId);
->>>>>>> index
     if (deletedReview) {
         res.json(deletedReview);
     } else {

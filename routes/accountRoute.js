@@ -43,12 +43,8 @@ accountRouter.post("/", async (req, res) => {
     res.status(201).json(newAccount);
 });
 
-<<<<<<< HEAD
-accountRouterRouter.patch("/:accountId", authorization, async (req, res) => {
-=======
 // update account
 accountRouter.patch("/:accountId", async (req, res) => {
->>>>>>> index
     const bodyData = {
         email: req.body.email,
         displayname: req.body.displayname,
@@ -69,15 +65,10 @@ accountRouter.patch("/:accountId", async (req, res) => {
         res.json(updatedAccount);
     }
 });
-<<<<<<< HEAD
-accountRouter.delete("/:accountId", authorization, async (req, res) => {
-    const deletedReview = await deleteReview(req.params.accountId);
-=======
 
 // delete account
 accountRouter.delete("/:accountId", async (req, res) => {
     const deletedAccount = await deleteAccount(req.params.accountId);
->>>>>>> index
     if (deletedAccount) {
         res.json(deletedAccount);
     } else {
