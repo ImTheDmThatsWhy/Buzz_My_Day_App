@@ -6,7 +6,7 @@ const {
     createPost,
     updatePost,
     deletePost,
-} = require("../controllers/postControllers");
+} = require("../controllers/postsControllers");
 const authorization = require("../middleware/authorization");
 const postRouter = express.Router();
 // Get all posts

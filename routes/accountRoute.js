@@ -6,7 +6,7 @@ const {
     createAccount,
     updateAccount,
     deleteAccount,
-} = require("../controllers/account_controller");
+} = require("../controllers/accountController");
 // use middleware so users must be authorised before updating the account
 const authorization = require("../middleware/authorization");
 

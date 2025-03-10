@@ -5,7 +5,7 @@ const {
     createCoffee,
     updateCoffee,
     deleteCoffee,
-} = require("../controllers/coffee_controller");
+} = require("../controllers/coffeeController");
 
 const coffeeRouter = express.Router();
 

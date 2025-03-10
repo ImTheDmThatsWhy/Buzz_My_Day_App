@@ -6,7 +6,7 @@ const {
     createFavourite,
     updateFavourite,
     deleteFavourite,
-} = require("../controllers/favourite_controller");
+} = require("../controllers/favouriteController");
 const authorization = require("../middleware/authorization");
 
 const favouriteRouter = express.Router();
