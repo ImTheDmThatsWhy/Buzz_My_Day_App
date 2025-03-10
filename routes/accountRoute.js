@@ -77,4 +77,3 @@ accountRouter.delete("/:accountId", async (req, res) => {
 });
 
 module.exports = accountRouter;
-
