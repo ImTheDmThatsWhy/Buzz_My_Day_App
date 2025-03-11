@@ -26,3 +26,11 @@ app.listen(3000, async () => {
     );
     console.log("Database connected");
 });
+//The code below is to catch incorrect routes for example cofee instead of coffee
+app.get("*", (request, response) => {
+    console.log("User attempted to visit" + request.path);
+    response.json({
+        message: "page not found",
+        attemptedPath: request.path,
+    });
+});
