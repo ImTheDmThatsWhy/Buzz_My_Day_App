@@ -16,11 +16,11 @@ async function createPost(post) {
     return newPost;
 }
 
-async function updatePost(postId, post, displayname) {
+async function updatePost(postId, post) {
     const postToUpdate = await Post.findById(postId);
-    if (postToUpdate.displayname.toString() !== displayname) {
-        return { error: "Action not allowed" };
-    }
+    // if (postToUpdate.displayname.toString() !== displayname) {
+    //     return { error: "Action not allowed" };
+    // }
     const updatedPost = await Post.findByIdAndUpdate(postId, post, {
         new: true,
     });

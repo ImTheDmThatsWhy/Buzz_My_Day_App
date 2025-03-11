@@ -6,7 +6,7 @@ async function getCoffees() {
 }
 
 async function getCoffee(coffeeId) {
-    const coffee = await Coffee.findbyId(coffeeId);
+    const coffee = await Coffee.findById(coffeeId);
     return coffee;
 }
 
@@ -16,7 +16,7 @@ async function createCoffee(coffee) {
 }
 
 async function updateCoffee(coffeeId, coffee) {
-    const updatedCoffee = await Coffee.findByIdandUpdate(coffeeId, coffee, {
+    const updatedCoffee = await Coffee.findByIdAndUpdate(coffeeId, coffee, {
         new: true,
     });
     return updatedCoffee;
