@@ -16,11 +16,7 @@ async function createReview(review) {
     return newReview;
 }
 
-async function updateReview(reviewId, review, userId) {
-    const ReviewToUpdate = await Review.findById(reviewId);
-    if (ReviewToUpdate.user_id.toString() !== userId) {
-        return { error: "Action not allowed" };
-    }
+async function updateReview(reviewId, review) {
     const updatedReview = await Review.findByIdAndUpdate(reviewId, review, {
         new: true,
     });

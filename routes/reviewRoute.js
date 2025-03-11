@@ -53,6 +53,15 @@ reviewRouter.patch("/:reviewId", authorization, async (req, res) => {
         bodyData,
         req.displayname
     );
+    if (!updatedReview) {
+        res.status(404).json({
+            error: `review with id ${req.params.reviewId} not found`,
+        });
+    } else if (updatedReview.error) {
+        res.status(403).json(updatedReview);
+    } else {
+        res.json(updatedReview);
+    }
 });
 // Delete review
 reviewRouter.delete("/:reviewId", authorization, async (req, res) => {

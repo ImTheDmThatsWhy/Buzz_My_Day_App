@@ -17,10 +17,6 @@ async function createPost(post) {
 }
 
 async function updatePost(postId, post) {
-    const postToUpdate = await Post.findById(postId);
-    // if (postToUpdate.displayname.toString() !== displayname) {
-    //     return { error: "Action not allowed" };
-    // }
     const updatedPost = await Post.findByIdAndUpdate(postId, post, {
         new: true,
     });
