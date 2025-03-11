@@ -4,6 +4,10 @@ const accountSchema = new mongoose.Schema(
     {
         email: {
             type: String,
+            // validate: [
+            //     minStringLength(5),
+            //     "email must have at least five characters.",
+            // ],
             required: true,
             unique: true,
         },
@@ -26,5 +30,10 @@ const accountSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
+// function minStringLength(min) {
+//     return function (value) {
+//         return value.length >= min;
+//     };
+// }
 
 module.exports = mongoose.model("Account", accountSchema);

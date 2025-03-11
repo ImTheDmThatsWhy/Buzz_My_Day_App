@@ -16,9 +16,13 @@ async function createAccount(accountData) {
 }
 
 async function updateAccount(accountId, accountData) {
-    const updatedAccount = await Account.findByIdAndUpdate(accountId, accountData, {
-        new: true,
-    });
+    const updatedAccount = await Account.findByIdAndUpdate(
+        accountId,
+        accountData,
+        {
+            new: true,
+        }
+    );
     return updatedAccount;
 }
 

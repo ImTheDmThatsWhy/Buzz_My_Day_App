@@ -3,10 +3,20 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/userLoginModel");
 
 async function registerUser(user) {
-    const existingUser = await User.findOne({ email: user.email });
-    if (existingUser) {
+    const existingEmail = await User.findOne({
+        email: user.email,
+    });
+    if (existingEmail) {
         return { error: "Email already in use" };
     }
+
+    const existingUser = await User.findOne({
+        username: user.username,
+    });
+    if (existingUser) {
+        return { error: "Username already in use" };
+    }
+
     //create a hashed password 10 indicates 2^10 number of times password is hashed, the hashed password is stored in the database.
     const hashedPassword = await bcrypt.hash(user.password, 10);
     //user creation

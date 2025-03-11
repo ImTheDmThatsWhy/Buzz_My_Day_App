@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const { body, validationResult } = require("express-validator");
 
 const accountRouter = require("../routes/accountRoute");
 const coffeeRoutes = require("../routes/coffeeRoutes");
@@ -11,6 +12,26 @@ const userRoute = require("../routes/userRoute");
 const app = express();
 
 app.use(express.json());
+
+app.post(
+    "/user/register",
+    body("email").isEmail().normalizeEmail(),
+    (request, response, next) => {
+        const errors = validationResult(request);
+        if (!errors.isEmpty()) {
+            // Using return and response together stops the rest of the route
+            // because responding twice would cause a server error.
+            return response.status(400).json({ errors: errors.array() });
+        }
+
+        next();
+    }
+);
+
+app.use((error, req, res, next) => {
+    console.error(error.stack);
+    res.status(error.status || 500).json({ message: "internal server error" });
+});
 
 app.use("/account", accountRouter);
 app.use("/coffee", coffeeRoutes);
