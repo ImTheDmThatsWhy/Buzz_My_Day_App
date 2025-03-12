@@ -37,6 +37,20 @@ For this web application the express javascript framework will be used for the a
 
 Node JS in comparison is not a framework and is instead an open source and cross platform runtime environment. In Node JS routing is not provided, it has fewer features, no middleware and has a longer run time then Express JS. Express JS in comparison provides routing, uses middleware, provides controllers, has a shorter coding time, and is used for building web applications. Therefore, the Express JS framework will be used in the backend of this application.
 
+## MERN
+
+source: geeksforgeeks (2019). MERN Stack. [online] GeeksforGeeks. Available at: https://www.geeksforgeeks.org/mern-stack/.
+
+Erickson, J. (2024). MEAN vs. MERN Stack Explained. [online] Oracle.com. Available at: https://www.oracle.com/database/mean-mern/.
+
+Gophers Lab. (n.d.). Vue.js vs React.js: Which JavaScript Framework to Choose in 2024. [online] Available at: https://gopherslab.com/insights/vue-js-vs-react-js/.
+
+For this assignment the mern stack will be used to build the backend of this web application. A MERN stack is a JavaScript stack that allows for the fast deployment of full stack applications. MERN comprises of four technologies including MongoDB which is a non relational database, Express which is a node JS framework, React which is a front end framework, and node a java script web server. In MERN all four technologies work together to build the web application.
+
+MERN will be used over MEAN (uses angular instead of React (front end technologies)) as React allows for more flexibility, has a simpler API compared to MERN and (leading to a less steep learning curve), has a faster performance compared to angular due to React using a virtual DOM which allows for efficient updating and rendering.
+
+MERN will also be used over MEVN which uses React instead of Vue.js because react is better for larger scale projects, has more extensive library support, and is the software that is better known by the developers of this web application.
+
 ## Libraries, Frameworks and Licenses
 
 ### Express JS

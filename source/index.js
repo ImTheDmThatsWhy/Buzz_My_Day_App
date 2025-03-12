@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const { body, validationResult } = require("express-validator");
+const helmet = require("helmet");
 
 const accountRouter = require("../routes/accountRoute");
 const coffeeRoutes = require("../routes/coffeeRoutes");
@@ -12,9 +13,10 @@ const userRoute = require("../routes/userRoute");
 const app = express();
 
 app.use(express.json());
-
+app.use(helmet());
 app.post(
     "/user/register",
+    // "/account/create",
     body("email").isEmail().normalizeEmail(),
     (req, res, next) => {
         const errors = validationResult(req);
