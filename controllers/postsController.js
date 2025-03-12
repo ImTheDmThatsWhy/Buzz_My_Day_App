@@ -1,5 +1,4 @@
 const Post = require("../models/postModel");
-const { findById } = require("../models/userLoginModel");
 
 async function getPosts() {
     const posts = await Post.find();
@@ -12,6 +11,14 @@ async function getPost(postId) {
 }
 
 async function createPost(post) {
+    // const existingPost = await Post.find({
+    //     post: title.content.displayname,
+    // });
+    // if (existingPost) {
+    //     return {
+    //         error: "Post with that title, content, and displayname already exists",
+    //     };
+    // }
     const newPost = await Post.create(post);
     return newPost;
 }

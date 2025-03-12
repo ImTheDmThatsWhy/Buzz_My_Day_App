@@ -31,7 +31,7 @@ accountRouter.get("/:accountId", async (req, res) => {
 });
 
 // create an account
-accountRouter.post("/", async (req, res) => {
+accountRouter.post("/", authorization, async (req, res) => {
     const bodyData = {
         email: req.body.email,
         displayname: req.body.displayname,
@@ -44,7 +44,7 @@ accountRouter.post("/", async (req, res) => {
 });
 
 // update account
-accountRouter.patch("/:accountId", async (req, res) => {
+accountRouter.patch("/:accountId", authorization, async (req, res) => {
     const bodyData = {
         email: req.body.email,
         displayname: req.body.displayname,
@@ -67,7 +67,7 @@ accountRouter.patch("/:accountId", async (req, res) => {
 });
 
 // delete account
-accountRouter.delete("/:accountId", async (req, res) => {
+accountRouter.delete("/:accountId", authorization, async (req, res) => {
     const deletedAccount = await deleteAccount(req.params.accountId);
 
     if (!deletedAccount) {
