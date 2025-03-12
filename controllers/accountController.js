@@ -10,19 +10,28 @@ async function getAccount(accountId) {
     return account;
 }
 
-async function createAccount(accountData) {
-    const newAccount = await Account.create(accountData);
+async function createAccount(account) {
+    const existingEmail = await Account.findOne({
+        email: account.email,
+    });
+    if (existingEmail) {
+        return { error: "Account with that email already exists" };
+    }
+
+    const existingDisplayname = await Account.findOne({
+        displayname: account.displayname,
+    });
+    if (existingDisplayname) {
+        return { error: "Account with that displayname already exists" };
+    }
+    const newAccount = await Account.create(account);
     return newAccount;
 }
 
-async function updateAccount(accountId, accountData) {
-    const updatedAccount = await Account.findByIdAndUpdate(
-        accountId,
-        accountData,
-        {
-            new: true,
-        }
-    );
+async function updateAccount(accountId, account) {
+    const updatedAccount = await Account.findByIdAndUpdate(accountId, account, {
+        new: true,
+    });
     return updatedAccount;
 }
 

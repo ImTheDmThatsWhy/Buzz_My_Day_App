@@ -16,12 +16,12 @@ app.use(express.json());
 app.post(
     "/user/register",
     body("email").isEmail().normalizeEmail(),
-    (request, response, next) => {
-        const errors = validationResult(request);
+    (req, res, next) => {
+        const errors = validationResult(req);
         if (!errors.isEmpty()) {
             // Using return and response together stops the rest of the route
             // because responding twice would cause a server error.
-            return response.status(400).json({ errors: errors.array() });
+            return res.status(400).json({ errors: errors.array() });
         }
 
         next();
