@@ -1,5 +1,8 @@
+// model for forum discussions
+// contains forum posts and user interactions
 const mongoose = require('mongoose');
 
+// schema definition for forum
 const forumSchema = new mongoose.Schema({
     displayname: {
         type: String,
@@ -20,4 +23,5 @@ const forumSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
+// export the model
 module.exports = mongoose.model('Forum', forumSchema);

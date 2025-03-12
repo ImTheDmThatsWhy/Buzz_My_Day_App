@@ -1,11 +1,13 @@
-// models/UserLogin.js
+// model for user login and authentication
+// contains user credentials and account reference
 const mongoose = require("mongoose");
 
+// schema definition for user login
 const userLoginSchema = new mongoose.Schema(
     {
         username: {
             type: String,
-            required: true,
+            required: false,
             unique: true,
         },
         email: {
@@ -14,9 +16,9 @@ const userLoginSchema = new mongoose.Schema(
             unique: true,
         },
         account_id: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Account",
-            required: false,
+             type: mongoose.Schema.Types.ObjectId,
+             ref: "Account",
+             required: false,
         },
         password: {
             type: String,
@@ -26,4 +28,5 @@ const userLoginSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
+// export the model
 module.exports = mongoose.model("UserLogin", userLoginSchema);

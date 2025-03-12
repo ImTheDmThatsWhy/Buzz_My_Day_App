@@ -1,5 +1,8 @@
+// model for coffee shop information
+// contains coffee shop details and metadata
 const mongoose = require("mongoose");
 
+// schema definition for coffee shops
 const coffeeSchema = new mongoose.Schema(
     {
         name: {
@@ -32,4 +35,5 @@ const coffeeSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
+// export the model
 module.exports = mongoose.model("Coffee", coffeeSchema);

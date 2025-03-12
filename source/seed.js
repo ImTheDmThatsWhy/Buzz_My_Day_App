@@ -52,12 +52,12 @@ async function seedDatabase() {
         {
             title: 'First Post',
             content: 'This is the content of the first post.',
-            author: 'User One',
+            displayname: 'User One',
         },
         {
             title: 'Second Post',
             content: 'This is the content of the second post.',
-            author: 'User Two',
+            displayname: 'User Two',
         },
     ];
 
@@ -133,12 +133,12 @@ async function seedDatabase() {
     const userLogins = [
         {
             username: 'user1',
-            account_id: seededAccounts[0]._id,
+            email: 'email1@gmail.com',
             password: 'password1',
         },
         {
             username: 'user2',
-            account_id: seededAccounts[1]._id,
+            email: 'email2@gmail.com',
             password: 'password2',
         },
     ];
