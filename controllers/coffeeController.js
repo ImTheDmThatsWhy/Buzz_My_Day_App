@@ -6,13 +6,19 @@ async function getCoffees() {
 }
 
 async function getCoffee(coffeeId) {
+    if (!coffeeId.match(/^[0-9a-fA-F]{24}$/)) {
+        // mongoose ids must match this regex
+        return false;
+    }
     const coffee = await Coffee.findById(coffeeId);
     return coffee;
 }
 
 async function createCoffee(coffee) {
-    const existingCoffee = await Coffee.find({
-        coffee: coffee.name.brand,
+    const existingCoffee = await Coffee.findOne({
+        name: coffee.name,
+        type: coffee.type,
+        brand: coffee.brand,
     });
     if (existingCoffee) {
         return {
@@ -25,20 +31,31 @@ async function createCoffee(coffee) {
 }
 
 async function updateCoffee(coffeeId, coffee) {
-    const existingCoffee = await Coffee.find({
-        coffee: coffee.name.brand,
+    if (!coffeeId.match(/^[0-9a-fA-F]{24}$/)) {
+        // mongoose ids must match this regex
+        return false;
+    }
+    const existingCoffee = await Coffee.findOne({
+        name: coffee.name,
+        type: coffee.type,
+        brand: coffee.brand,
     });
     if (existingCoffee) {
         return {
             error: "coffee with that brand, name, and type already exists",
         };
     }
+
     const updatedCoffee = await Coffee.findByIdAndUpdate(coffeeId, coffee, {
         new: true,
     });
     return updatedCoffee;
 }
 async function deleteCoffee(coffeeId) {
+    if (!coffeeId.match(/^[0-9a-fA-F]{24}$/)) {
+        // mongoose ids must match this regex
+        return false;
+    }
     const deletedCoffee = await Coffee.findByIdAndDelete(coffeeId);
     return deletedCoffee;
 }

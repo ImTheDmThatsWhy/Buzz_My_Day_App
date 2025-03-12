@@ -11,14 +11,16 @@ async function getPost(postId) {
 }
 
 async function createPost(post) {
-    // const existingPost = await Post.find({
-    //     post: title.content.displayname,
-    // });
-    // if (existingPost) {
-    //     return {
-    //         error: "Post with that title, content, and displayname already exists",
-    //     };
-    // }
+    const existingPost = await Post.findOne({
+        title: post.title,
+        content: post.content,
+        displayname: post.displayname,
+    });
+    if (existingPost) {
+        return {
+            error: "Post with that title, content, and displayname already exists",
+        };
+    }
     const newPost = await Post.create(post);
     return newPost;
 }

@@ -4,8 +4,11 @@ const mongoose = require("mongoose");
 const userLoginSchema = new mongoose.Schema(
     {
         username: {
-            type: String,
-            // validate: [usernameValidation],
+            type: [String],
+            validate: [
+                usernameValidation(),
+                "username must be between 2-12 characters and can only contain letters underscores, and spaces",
+            ],
             required: true,
             unique: true,
         },
@@ -26,16 +29,20 @@ const userLoginSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
-// function usernameValidation(username) {
-//     if (username.length < 2) {
-//         return "username must be longer";
-//     }
-//     if (username.length > 12) {
-//         return "Username needs to be shorter";
-//     }
-//     const pattern = /^[A-Za-z][A-Za-z ]+$/;
-//     if (!pattern.test(username)) {
-//         return "Username invalid only spaces and lower and upper case letters allowed";
-//     } else return "Username valid";
-// }
+function usernameValidation() {
+    return function (value) {
+        if (value.length != 1) return false;
+        username = value[0];
+        if (username.length < 2) {
+            return false;
+        }
+        if (username.length > 12) {
+            return false;
+        }
+        const pattern = /^[A-Za-z0-9][A-Za-z_0-9 ]+$/;
+        if (!pattern.test(username)) {
+            return false;
+        } else return true;
+    };
+}
 module.exports = mongoose.model("UserLogin", userLoginSchema);

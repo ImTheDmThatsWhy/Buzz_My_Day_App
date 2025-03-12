@@ -68,7 +68,7 @@ coffeeRouter.delete("/:coffeeId", async (req, res) => {
         res.json(deletedCoffee);
     } else {
         res.status(404).json({
-            error: `Coffee with id ${req.params.coffeeId} not found`,
+            error: `coffee with id ${req.params.coffeeId} not found`,
         });
     }
 });

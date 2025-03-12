@@ -16,7 +16,21 @@ app.use(express.json());
 app.use(helmet());
 app.post(
     "/user/register",
-    // "/account/create",
+    body("email").isEmail().normalizeEmail(),
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            // Using return and response together stops the rest of the route
+            // because responding twice would cause a server error.
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        next();
+    }
+);
+
+app.post(
+    "/account",
     body("email").isEmail().normalizeEmail(),
     (req, res, next) => {
         const errors = validationResult(req);

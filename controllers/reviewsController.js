@@ -12,6 +12,15 @@ async function getReview(reviewId) {
 }
 
 async function createReview(review) {
+    const existingReview = await Review.findOne({
+        displayname: review.displayname,
+        coffee_id: review.coffee_id,
+    });
+    if (existingReview) {
+        return {
+            error: "review with that displayname and coffee already exists",
+        };
+    }
     const newReview = await Review.create(review);
     return newReview;
 }

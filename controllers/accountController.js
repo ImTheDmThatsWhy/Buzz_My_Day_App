@@ -6,6 +6,10 @@ async function getAccounts() {
 }
 
 async function getAccount(accountId) {
+    if (!accountId.match(/^[0-9a-fA-F]{24}$/)) {
+        // mongoose ids must match this regex
+        return false;
+    }
     const account = await Account.findById(accountId);
     return account;
 }
@@ -29,6 +33,10 @@ async function createAccount(account) {
 }
 
 async function updateAccount(accountId, account) {
+    if (!accountId.match(/^[0-9a-fA-F]{24}$/)) {
+        // mongoose ids must match this regex
+        return false;
+    }
     const existingEmail = await Account.findOne({
         email: account.email,
     });
@@ -49,6 +57,10 @@ async function updateAccount(accountId, account) {
 }
 
 async function deleteAccount(accountId) {
+    if (!accountId.match(/^[0-9a-fA-F]{24}$/)) {
+        // mongoose ids must match this regex
+        return false;
+    }
     const deletedAccount = await Account.findByIdAndDelete(accountId);
     return deletedAccount;
 }
