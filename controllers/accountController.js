@@ -29,6 +29,19 @@ async function createAccount(account) {
 }
 
 async function updateAccount(accountId, account) {
+    const existingEmail = await Account.findOne({
+        email: account.email,
+    });
+    if (existingEmail) {
+        return { error: "Account with that email already exists" };
+    }
+
+    const existingDisplayname = await Account.findOne({
+        displayname: account.displayname,
+    });
+    if (existingDisplayname) {
+        return { error: "Account with that displayname already exists" };
+    }
     const updatedAccount = await Account.findByIdAndUpdate(accountId, account, {
         new: true,
     });

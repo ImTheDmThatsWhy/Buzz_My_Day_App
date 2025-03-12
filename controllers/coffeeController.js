@@ -11,11 +11,28 @@ async function getCoffee(coffeeId) {
 }
 
 async function createCoffee(coffee) {
+    const existingCoffee = await Coffee.find({
+        coffee: coffee.name.brand,
+    });
+    if (existingCoffee) {
+        return {
+            error: "coffee with that brand, name, and type already exists",
+        };
+    }
+
     const newCoffee = await Coffee.create(coffee);
     return newCoffee;
 }
 
 async function updateCoffee(coffeeId, coffee) {
+    const existingCoffee = await Coffee.find({
+        coffee: coffee.name.brand,
+    });
+    if (existingCoffee) {
+        return {
+            error: "coffee with that brand, name, and type already exists",
+        };
+    }
     const updatedCoffee = await Coffee.findByIdAndUpdate(coffeeId, coffee, {
         new: true,
     });

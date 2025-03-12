@@ -69,12 +69,13 @@ accountRouter.patch("/:accountId", async (req, res) => {
 // delete account
 accountRouter.delete("/:accountId", async (req, res) => {
     const deletedAccount = await deleteAccount(req.params.accountId);
-    if (deletedAccount) {
-        res.json(deletedAccount);
-    } else {
+
+    if (!deletedAccount) {
         res.status(404).json({
-            error: `Account with id ${req.params.accountId} not found`,
+            error: `Account with id ${req.params.accountId} does not exist`,
         });
+    } else {
+        res.json(deletedAccount);
     }
 });
 
