@@ -1,5 +1,8 @@
+// model for coffee shop reviews
+// contains review data and user references
 const mongoose = require('mongoose');
 
+// schema definition for reviews
 const reviewsSchema = new mongoose.Schema({
     displayname: {
         type: String,
@@ -25,4 +28,5 @@ const reviewsSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
+// export the model
 module.exports = mongoose.model('Reviews', reviewsSchema);

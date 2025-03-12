@@ -1,5 +1,8 @@
+// model for user accounts
+// contains user profile information
 const mongoose = require("mongoose");
 
+// schema definition for accounts
 const accountSchema = new mongoose.Schema(
     {
         email: {
@@ -27,4 +30,5 @@ const accountSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
+// export the model
 module.exports = mongoose.model("Account", accountSchema);

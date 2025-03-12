@@ -1,3 +1,5 @@
+// model for user posts and content
+// contains post data and user references
 const mongoose = require("mongoose");
 
 const CommentSchema = mongoose.Schema({
@@ -24,4 +26,5 @@ const Comment = mongoose.model("Comment", CommentSchema);
 
 const Post = mongoose.model("Post", PostSchema);
 
+// export the model
 module.exports = Post;

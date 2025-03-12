@@ -15,6 +15,7 @@ async function registerUser(user) {
         email: user.email,
         password: hashedPassword,
     });
+    console.log(UserCreated)
     //create jsonwebtoken
     const payload = {
         id: UserCreated._id,
@@ -24,13 +25,18 @@ async function registerUser(user) {
 }
 async function loginUser(user) {
     // check existence of user
-    const existingUser = await User.findOne({ email: user.email });
+    const existingUser = await User.findOne({ email: "fredri4343ck@gmail.com" });
+
+    console.log(existingUser)
     if (!existingUser) {
+        console.log('log')
         return { error: "Incorrect email or password" };
     }
+    
     //password match check
     const isMatch = await bcrypt.compare(user.password, existingUser.password);
     if (!isMatch) {
+        console.log('l3332og')
         return { error: "Incorrect email or password" };
     }
     // jsw token creation

@@ -25,6 +25,7 @@ userRouter.post("/login", async (req, res) => {
     };
     const token = await loginUser(bodyData);
     if (token.error) {
+        console.log(bodyData)
         res.status(401).json(token);
     } else {
         res.json(token);
