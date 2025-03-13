@@ -15,45 +15,57 @@ async function getAccount(accountId) {
 }
 
 async function createAccount(account) {
-    const existingEmail = await Account.findOne({
-        email: account.email,
-    });
-    if (existingEmail) {
-        return { error: "Account with that email already exists" };
-    }
+    try {
+        const existingEmail = await Account.findOne({
+            email: account.email,
+        });
+        if (existingEmail) {
+            return { error: "Account with that email already exists" };
+        }
 
-    const existingDisplayname = await Account.findOne({
-        displayname: account.displayname,
-    });
-    if (existingDisplayname) {
-        return { error: "Account with that displayname already exists" };
+        const existingDisplayname = await Account.findOne({
+            displayname: account.displayname,
+        });
+        if (existingDisplayname) {
+            return { error: "Account with that displayname already exists" };
+        }
+        const newAccount = await Account.create(account);
+        return newAccount;
+    } catch (err) {
+        return { error: err.errors };
     }
-    const newAccount = await Account.create(account);
-    return newAccount;
 }
 
 async function updateAccount(accountId, account) {
-    if (!accountId.match(/^[0-9a-fA-F]{24}$/)) {
-        // mongoose ids must match this regex
-        return false;
-    }
-    const existingEmail = await Account.findOne({
-        email: account.email,
-    });
-    if (existingEmail) {
-        return { error: "Account with that email already exists" };
-    }
+    try {
+        if (!accountId.match(/^[0-9a-fA-F]{24}$/)) {
+            // mongoose ids must match this regex
+            return false;
+        }
+        const existingEmail = await Account.findOne({
+            email: account.email,
+        });
+        if (existingEmail) {
+            return { error: "Account with that email already exists" };
+        }
 
-    const existingDisplayname = await Account.findOne({
-        displayname: account.displayname,
-    });
-    if (existingDisplayname) {
-        return { error: "Account with that displayname already exists" };
+        const existingDisplayname = await Account.findOne({
+            displayname: account.displayname,
+        });
+        if (existingDisplayname) {
+            return { error: "Account with that displayname already exists" };
+        }
+        const updatedAccount = await Account.findByIdAndUpdate(
+            accountId,
+            account,
+            {
+                new: true,
+            }
+        );
+        return updatedAccount;
+    } catch (err) {
+        return { error: err.errors };
     }
-    const updatedAccount = await Account.findByIdAndUpdate(accountId, account, {
-        new: true,
-    });
-    return updatedAccount;
 }
 
 async function deleteAccount(accountId) {

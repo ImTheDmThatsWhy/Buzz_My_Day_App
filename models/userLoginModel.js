@@ -23,12 +23,32 @@ const userLoginSchema = new mongoose.Schema(
             required: false,
         },
         password: {
-            type: String,
+            type: [String],
+            validate: [
+                passwordValidation(),
+                "password must be between 2-12 characters and can only contain letters, underscores, spaces, and the following special characters !#$%&?",
+            ],
             required: true,
         },
     },
     { timestamps: true }
 );
+function passwordValidation() {
+    return function (value) {
+        if (value.length != 1) return false;
+        username = value[0];
+        if (username.length < 2) {
+            return false;
+        }
+        if (username.length > 12) {
+            return false;
+        }
+        const pattern = /^[A-Za-z0-9!#$%&?][A-Za-z_0-9!#$%&?]+$/;
+        if (!pattern.test(username)) {
+            return false;
+        } else return true;
+    };
+}
 function usernameValidation() {
     return function (value) {
         if (value.length != 1) return false;

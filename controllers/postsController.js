@@ -15,29 +15,37 @@ async function getPost(postId) {
 }
 
 async function createPost(post) {
-    const existingPost = await Post.findOne({
-        title: post.title,
-        content: post.content,
-        displayname: post.displayname,
-    });
-    if (existingPost) {
-        return {
-            error: "Post with that title, content, and displayname already exists",
-        };
+    try {
+        const existingPost = await Post.findOne({
+            title: post.title,
+            content: post.content,
+            displayname: post.displayname,
+        });
+        if (existingPost) {
+            return {
+                error: "Post with that title, content, and displayname already exists",
+            };
+        }
+        const newPost = await Post.create(post);
+        return newPost;
+    } catch (err) {
+        return { error: err.errors };
     }
-    const newPost = await Post.create(post);
-    return newPost;
 }
 
 async function updatePost(postId, post) {
-    if (!postId.match(/^[0-9a-fA-F]{24}$/)) {
-        // mongoose ids must match this regex
-        return false;
+    try {
+        if (!postId.match(/^[0-9a-fA-F]{24}$/)) {
+            // mongoose ids must match this regex
+            return false;
+        }
+        const updatedPost = await Post.findByIdAndUpdate(postId, post, {
+            new: true,
+        });
+        return updatedPost;
+    } catch (err) {
+        return { error: err.errors };
     }
-    const updatedPost = await Post.findByIdAndUpdate(postId, post, {
-        new: true,
-    });
-    return updatedPost;
 }
 async function deletePost(postId) {
     if (!postId.match(/^[0-9a-fA-F]{24}$/)) {

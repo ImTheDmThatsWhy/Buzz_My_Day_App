@@ -10,13 +10,14 @@ async function getFavourite(favouriteId) {
         // mongoose ids must match this regex
         return false;
     }
-    const favourite = await Favourite.findOne(favouriteId);
+    const favourite = await Favourite.findById(favouriteId);
     return favourite;
 }
 
 async function createFavourite(favourite) {
     const existingFavourite = await Favourite.findById({
-        favourite: favourite.coffeeId,
+        coffee_id: favourite.coffee_id,
+        account_id: favourite.account_id,
     });
     if (existingFavourite) {
         return { error: "coffee with that id already in favourites" };
