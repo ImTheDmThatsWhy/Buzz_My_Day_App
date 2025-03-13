@@ -31,10 +31,12 @@ async function registerUser(user) {
     //user creation
     console.log(hashedPassword);
     try {
+        console.log();
         const userCreated = await User.create({
             username: user.username,
             email: user.email,
             password: hashedPassword,
+            is_admin: Boolean,
         });
         //create jsonwebtoken
         const payload = {

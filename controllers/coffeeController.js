@@ -15,41 +15,48 @@ async function getCoffee(coffeeId) {
 }
 
 async function createCoffee(coffee) {
-    const existingCoffee = await Coffee.findOne({
-        name: coffee.name,
-        type: coffee.type,
-        brand: coffee.brand,
-    });
-    if (existingCoffee) {
-        return {
-            error: "coffee with that brand, name, and type already exists",
-        };
-    }
+    try {
+        const existingCoffee = await Coffee.findOne({
+            name: coffee.name,
+            type: coffee.type,
+            brand: coffee.brand,
+        });
+        if (existingCoffee) {
+            return {
+                error: "coffee with that brand, name, and type already exists",
+            };
+        }
 
-    const newCoffee = await Coffee.create(coffee);
-    return newCoffee;
+        const newCoffee = await Coffee.create(coffee);
+        return newCoffee;
+    } catch (err) {
+        return { error: err.errors };
+    }
 }
-
 async function updateCoffee(coffeeId, coffee) {
-    if (!coffeeId.match(/^[0-9a-fA-F]{24}$/)) {
-        // mongoose ids must match this regex
-        return false;
-    }
-    const existingCoffee = await Coffee.findOne({
-        name: coffee.name,
-        type: coffee.type,
-        brand: coffee.brand,
-    });
-    if (existingCoffee) {
-        return {
-            error: "coffee with that brand, name, and type already exists",
-        };
-    }
+    try {
+        if (!coffeeId.match(/^[0-9a-fA-F]{24}$/)) {
+            // mongoose ids must match this regex
+            return false;
+        }
+        const existingCoffee = await Coffee.findOne({
+            name: coffee.name,
+            type: coffee.type,
+            brand: coffee.brand,
+        });
+        if (existingCoffee) {
+            return {
+                error: "coffee with that brand, name, and type already exists",
+            };
+        }
 
-    const updatedCoffee = await Coffee.findByIdAndUpdate(coffeeId, coffee, {
-        new: true,
-    });
-    return updatedCoffee;
+        const updatedCoffee = await Coffee.findByIdAndUpdate(coffeeId, coffee, {
+            new: true,
+        });
+        return updatedCoffee;
+    } catch (err) {
+        return { error: err.errors };
+    }
 }
 async function deleteCoffee(coffeeId) {
     if (!coffeeId.match(/^[0-9a-fA-F]{24}$/)) {

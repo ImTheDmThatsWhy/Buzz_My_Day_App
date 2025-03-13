@@ -30,14 +30,18 @@ async function createReview(review) {
 }
 
 async function updateReview(reviewId, review) {
-    if (!reviewId.match(/^[0-9a-fA-F]{24}$/)) {
-        // mongoose ids must match this regex
-        return false;
+    try {
+        if (!reviewId.match(/^[0-9a-fA-F]{24}$/)) {
+            // mongoose ids must match this regex
+            return false;
+        }
+        const updatedReview = await Review.findByIdAndUpdate(reviewId, review, {
+            new: true,
+        });
+        return updatedReview;
+    } catch (err) {
+        return { error: err.errors };
     }
-    const updatedReview = await Review.findByIdAndUpdate(reviewId, review, {
-        new: true,
-    });
-    return updatedReview;
 }
 async function deleteReview(reviewId) {
     if (!reviewId.match(/^[0-9a-fA-F]{24}$/)) {

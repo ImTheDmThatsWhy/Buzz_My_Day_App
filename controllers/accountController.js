@@ -52,7 +52,7 @@ async function updateAccount(accountId, account) {
         const existingDisplayname = await Account.findOne({
             displayname: account.displayname,
         });
-        if (existingDisplayname) {
+        if (existingDisplayname && existingDisplayname._id != accountId) {
             return { error: "Account with that displayname already exists" };
         }
         const updatedAccount = await Account.findByIdAndUpdate(
