@@ -6,6 +6,10 @@ async function getPosts() {
 }
 
 async function getPost(postId) {
+    if (!postId.match(/^[0-9a-fA-F]{24}$/)) {
+        // mongoose ids must match this regex
+        return false;
+    }
     const post = await Post.findById(postId);
     return post;
 }
@@ -26,12 +30,20 @@ async function createPost(post) {
 }
 
 async function updatePost(postId, post) {
+    if (!postId.match(/^[0-9a-fA-F]{24}$/)) {
+        // mongoose ids must match this regex
+        return false;
+    }
     const updatedPost = await Post.findByIdAndUpdate(postId, post, {
         new: true,
     });
     return updatedPost;
 }
 async function deletePost(postId) {
+    if (!postId.match(/^[0-9a-fA-F]{24}$/)) {
+        // mongoose ids must match this regex
+        return false;
+    }
     const deletedPost = await Post.findByIdAndDelete(postId);
     return deletedPost;
 }
