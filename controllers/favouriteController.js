@@ -15,14 +15,21 @@ async function getFavourite(favouriteId) {
 }
 
 async function createFavourite(favourite) {
-    const existingFavourite = await Favourite.findById({
-        coffee_id: favourite.coffee_id,
-        account_id: favourite.account_id,
-    });
-    if (existingFavourite) {
-        return { error: "coffee with that id already in favourites" };
-    }
-
+    // if (!coffee_id.match(/^[0-9a-fA-F]{24}$/)) {
+    //     // mongoose ids must match this regex
+    //     return false;
+    // }
+    // if (!account_id.match(/^[0-9a-fA-F]{24}$/)) {
+    //     // mongoose ids must match this regex
+    //     return false;
+    // }
+    // const existingFavourite = await Favourite.findById({
+    //     coffee_id: favourite.coffee_id,
+    //     account_id: favourite.account_id,
+    // });
+    // if (existingFavourite) {
+    //     return { error: "coffee with that id already in favourites" };
+    // }
     const newFavourite = await Favourite.create(favourite);
     return newFavourite;
 }
@@ -32,6 +39,14 @@ async function updateFavourite(favouriteId, favourite) {
         // mongoose ids must match this regex
         return false;
     }
+    // if (!coffee_id.match(/^[0-9a-fA-F]{24}$/)) {
+    //     // mongoose ids must match this regex
+    //     return false;
+    // }
+    // if (!account_id.match(/^[0-9a-fA-F]{24}$/)) {
+    //     // mongoose ids must match this regex
+    //     return false;
+    // }
     const updatedFavourite = await Favourite.findByIdAndUpdate(
         favouriteId,
         favourite,
