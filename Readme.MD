@@ -14,6 +14,10 @@ The Buzz My Day Application will be a standalone application hosted on a remote 
 • Create, read, update, and delete posts
 • Save coffees to a favourites list
 
+## Style Guide
+
+This application uses the Prettier formatter as its style guide.
+
 ## Operating design:
 
 • Web Browser: The web app will be accessible through Chrome, Safari, and Internet Explorer browsers.
@@ -47,9 +51,9 @@ Gophers Lab. (n.d.). Vue.js vs React.js: Which JavaScript Framework to Choose in
 
 For this assignment the mern stack will be used to build the backend of this web application. A MERN stack is a JavaScript stack that allows for the fast deployment of full stack applications. MERN comprises of four technologies including MongoDB which is a non relational database, Express which is a node JS framework, React which is a front end framework, and node a java script web server. In MERN all four technologies work together to build the web application.
 
-MERN will be used over MEAN (uses angular instead of React (front end technologies)) as React allows for more flexibility, has a simpler API compared to MERN and (leading to a less steep learning curve), has a faster performance compared to angular due to React using a virtual DOM which allows for efficient updating and rendering.
+MERN will be used over MEAN (uses angular instead of React (front end technologies)) as React allows for more flexibility, has a simpler API compared to MEAN and (leading to a less steep learning curve), has a faster performance compared to angular due to React using a virtual DOM which allows for efficient updating and rendering.
 
-MERN will also be used over MEVN which uses React instead of Vue.js because react is better for larger scale projects, has more extensive library support, and is the software that is better known by the developers of this web application.
+MERN will also be used over MEVN which uses Vue.js instead of React because react is better for larger scale projects, has more extensive library support, and is the software that is better known by the developers of this web application.
 
 ## Libraries, Frameworks and Licenses
 

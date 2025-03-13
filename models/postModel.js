@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const validator = require("../function/validator");
 const CommentSchema = mongoose.Schema({
     message: String,
 });
@@ -7,12 +8,12 @@ const PostSchema = mongoose.Schema({
     title: { type: String, required: true },
     content: { type: String, required: true },
     displayname: {
-        type: [String],
+        type: String,
         required: true,
-        validate: [
-            displaynameValidation(),
-            "displayname must be between 2-12 characters",
-        ],
+        validate: {
+            validator: validator.displaynameValidation(),
+            message: "displayname must be between 2-12 characters",
+        },
     },
     is_published: Boolean,
 
@@ -22,18 +23,6 @@ const PostSchema = mongoose.Schema({
         ref: "User",
     },
 });
-function displaynameValidation() {
-    return function (value) {
-        if (value.length != 1) return false;
-        username = value[0];
-        if (username.length < 2) {
-            return false;
-        }
-        if (username.length > 12) {
-            return false;
-        }
-    };
-}
 
 const Comment = mongoose.model("Comment", CommentSchema);
 

@@ -45,7 +45,7 @@ async function updateAccount(accountId, account) {
         const existingEmail = await Account.findOne({
             email: account.email,
         });
-        if (existingEmail) {
+        if (existingEmail && existingEmail._id != accountId) {
             return { error: "Account with that email already exists" };
         }
 

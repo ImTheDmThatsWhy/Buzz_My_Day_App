@@ -1,14 +1,15 @@
 const mongoose = require("mongoose");
+const validator = require("../function/validator");
 
 const reviewsSchema = new mongoose.Schema(
     {
         displayname: {
-            type: [String],
+            type: String,
             required: true,
-            validate: [
-                displaynameValidation(),
-                "displayname must be between 2-12 characters",
-            ],
+            validate: {
+                validator: validator.displaynameValidation(),
+                message: "displayname must be between 2-12 characters",
+            },
         },
         description: {
             type: String,
@@ -31,17 +32,5 @@ const reviewsSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
-function displaynameValidation() {
-    return function (value) {
-        if (value.length != 1) return false;
-        username = value[0];
-        if (username.length < 2) {
-            return false;
-        }
-        if (username.length > 12) {
-            return false;
-        }
-    };
-}
 
 module.exports = mongoose.model("Reviews", reviewsSchema);

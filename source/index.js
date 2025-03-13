@@ -44,7 +44,7 @@ app.post(
     }
 );
 app.patch(
-    "/account",
+    "/account/:accountId",
     body("email").isEmail().normalizeEmail(),
     (req, res, next) => {
         const errors = validationResult(req);

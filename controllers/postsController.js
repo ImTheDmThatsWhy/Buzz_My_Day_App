@@ -29,6 +29,7 @@ async function createPost(post) {
         const newPost = await Post.create(post);
         return newPost;
     } catch (err) {
+        console.log(err);
         return { error: err.errors };
     }
 }

@@ -17,9 +17,19 @@ async function registerUser(user) {
         return { error: "Username already in use" };
     }
 
+    const pattern = /^[A-Za-z0-9!#$%&?][A-Za-z_0-9!#$%&?]+$/;
+    if (user.password.length < 2 || user.password.length > 12) {
+        return { error: "password must be 2-12 characters in length" };
+    } else if (!pattern.test(user.password)) {
+        return {
+            error: "password can only contain letters, underscores, spaces, and the following special characters !#$%&?",
+        };
+    }
+
     //create a hashed password 10 indicates 2^10 number of times password is hashed, the hashed password is stored in the database.
     const hashedPassword = await bcrypt.hash(user.password, 10);
     //user creation
+    console.log(hashedPassword);
     try {
         const userCreated = await User.create({
             username: user.username,
