@@ -6,6 +6,10 @@ async function getFavourites() {
 }
 
 async function getFavourite(favouriteId) {
+    if (!favouriteId.match(/^[0-9a-fA-F]{24}$/)) {
+        // mongoose ids must match this regex
+        return false;
+    }
     const favourite = await Favourite.findOne(favouriteId);
     return favourite;
 }
@@ -23,6 +27,10 @@ async function createFavourite(favourite) {
 }
 
 async function updateFavourite(favouriteId, favourite) {
+    if (!favouriteId.match(/^[0-9a-fA-F]{24}$/)) {
+        // mongoose ids must match this regex
+        return false;
+    }
     const updatedFavourite = await Favourite.findByIdAndUpdate(
         favouriteId,
         favourite,
@@ -33,6 +41,10 @@ async function updateFavourite(favouriteId, favourite) {
     return updatedFavourite;
 }
 async function deleteFavourite(favouriteId) {
+    if (!favouriteId.match(/^[0-9a-fA-F]{24}$/)) {
+        // mongoose ids must match this regex
+        return false;
+    }
     const deletedFavourite = await Favourite.findByIdAndDelete(favouriteId);
     return deletedFavourite;
 }
