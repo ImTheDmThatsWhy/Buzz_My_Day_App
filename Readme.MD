@@ -384,37 +384,81 @@ MIT license: Bcrypt is under the Mit license which has previously been posted on
 
 Bcrypt is under the Mit license which can be found earlier in the Read Me. As this is an open license there is no ethical concerns about the use of Bcrpt in this application as I have acknowledged that Bcrypt is under the MIT license, in accordance with the license requirements.
 
-### Nodemon (App Development)
+### npm run dev (App Development):
 
-Source: GeeksforGeeks. (2020). Node.js nodemon Module. [online] Available at: https://www.geeksforgeeks.org/node-js-nodemon-module/.
+GeeksforGeeks. (2024). npm run dev. [online] Available at: https://www.geeksforgeeks.org/npm-run-dev/.
 
-Nodemon npm module is a module that develope node.js applications by restarting the application when file changes are detected. For this application Nodemon has been used to develop the application.
+This command intiates the development server that allows for reloading, hot module replacement, error handling and other efficient developmental features. This script is defined in the package.json files.
 
-To install nodemon the following code was used:
+### Jest and Supertest
 
-```
-npm install -g nodemon
-```
+source: Orie, C. (2019). Testing NodeJs/Express API with Jest and Supertest. [online] DEV Community. Available at: https://dev.to/nedsoft/testing-nodejs-express-api-with-jest-and-supertest-1km6 [Accessed 13 Mar. 2025].
 
-Instructions on how to use node can be found on https://www.geeksforgeeks.org/node-js-nodemon-module/
+In this application jest and supertest is being used to test the code. Jest is a javascript testing framework that uses a built-in test runner, while supertest will be used to test the Node.js HTTP servers.
 
-#### Nodemon dependencies, license, and ethics:
+Installation: To install Jest and Supertest follow the instructions provided in the following link:https://dev.to/nedsoft/testing-nodejs-express-api-with-jest-and-supertest-1km6
 
-Source: npm. (n.d.). nodemon. [online] Available at: https://www.npmjs.com/package/nodemon.
+#### Jest License and Ethics
 
-Dependencies according to the source:
+source: npm. (n.d.). jest. [online] Available at: https://www.npmjs.com/package/jest.
 
--   chokidar
--   debug
--   ignore-by-default
--   minimatch
--   pstreeremy
--   semver
--   simple-update-notifier
--   supports-color
--   touch
--   undefsafe
+According to the source above Jest has four dependencies:
 
-MIT License: Nodemon is under the MIT license which has been previously posted in this ReadMe.
+-   @jest/types
+-   @jest/core
+-   import-local
+-   jest-cli
 
-Ethics: Nodemon is under the MIT license which can be found earlier in the Read Me. As this is an open license there is no ethical concerns about the use of Nodemon in this application as I have acknowledged that Nodemon is under the MIT license, in accordance with the license requirements.
+And the following dev dependencies:
+
+-   ava
+-   babel
+-   coverage
+-   easy
+-   expect
+-   facebook
+-   immersive
+-   instant
+-   jasmine
+-   jest
+-   jsdom
+-   mocha
+-   mocking
+-   painless
+-   qunit
+-   runner
+-   sandboxed
+-   snapshot
+-   tap
+-   tape
+-   test
+-   testing
+-   typescript
+-   watch
+
+License: Jest falls under the MIT license which has been posted already in this read me. As this is an open license there is no ethical concerns about the use of Jest in this application as I have acknowledged that Jest is under the MIT license, in accordance with the license requirements.
+
+#### SuperTest License and Ethics
+
+source: npm. (2024). supertest. [online] Available at: https://www.npmjs.com/package/supertest?activeTab=readme [Accessed 13 Mar. 2025].
+
+According to the source above supertest has two dependencies:
+
+-   methods
+-   superagent
+
+And the following dev dependencies:
+
+-   body-parser
+-   cookie-parser
+-   eslint
+-   eslint-config-airbnb-base
+-   eslint-plugin-import
+-   express
+-   mocha
+-   nock
+-   nyc
+-   proxyquire
+-   should
+
+License and Ethics: Supertest falls under the MIT license which has been posted already in this read me. As this is an open license there is no ethical concerns about the use of supertest in this application as I have acknowledged that supertest is under the MIT license, in accordance with the license requirements.
