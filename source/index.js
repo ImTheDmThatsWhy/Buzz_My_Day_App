@@ -9,6 +9,7 @@ const favouriteRoutes = require("../routes/favouriteRoutes");
 const postRoute = require("../routes/postRoute");
 const reviewRoute = require("../routes/reviewRoute");
 const userRoute = require("../routes/userRoute");
+const commentRoute = require("../routes/commentRoute");
 
 const app = express();
 
@@ -69,6 +70,7 @@ app.use("/favourite", favouriteRoutes);
 app.use("/post", postRoute);
 app.use("/review", reviewRoute);
 app.use("/user", userRoute);
+app.use("/comment", commentRoute);
 
 app.listen(3000, async () => {
     console.log("Server started");
