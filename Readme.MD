@@ -6,6 +6,21 @@ This app allows users to find their favourite instant coffee, read and write rev
 
 The Buzz My Day Application will be a standalone application hosted on a remote server and accessible to users through a web browser.
 
+## Project Dependencies
+
+This project relies on the following which are explained in detail below:
+
+-   express
+-   Node.js and npm
+-   prettier
+-   express validator
+-   JSW
+-   Bcrypt
+-   Helmet
+-   Ubuntu-22.04 WSL
+-   MongoDB
+-   Mongoose
+
 ## App Functions:
 
 • User registration and login
@@ -22,6 +37,10 @@ The Buzz My Day Application will be a standalone application hosted on a remote 
 • Cloud-based-server: Render will be used to deploy the application.
 
 • Database Deployment: To deploy the database MongoDB Cloud Atlas will be used.
+
+## Style Guide
+
+This application uses the Prettier formatter as its style guide. Prettier is being used in this applicationto help maintain code consistency throughout the JavaScript project. Follow the instructions in step 6 for VS code to install prettier: https://www.geeksforgeeks.org/how-to-set-up-prettier-in-your-javascript-typescript-project/
 
 ## API Design:
 
