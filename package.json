@@ -5,8 +5,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "node --watch source/index.js",
-        "seed": "node source/utils/seed.js",
-        "wipe": "node source/utils/wipe.js"
+        "seed": "node source/seed.js"
     },
     "keywords": [],
     "author": "",

@@ -9,12 +9,12 @@ const {
 } = require("../controllers/accountController");
 // use middleware so users must be authorised before updating the account
 const authorization = require("../middleware/authorization");
-// const admin = require("../middleware/admin");
+const admin = require("../middleware/admin");
 
 const accountRouter = express.Router();
 
 // get accounts
-accountRouter.get("/", async (req, res) => {
+accountRouter.get("/", admin, async (req, res) => {
     const accounts = await getAccounts();
     res.json(accounts);
 });

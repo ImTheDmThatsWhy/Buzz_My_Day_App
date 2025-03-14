@@ -36,7 +36,7 @@ async function registerUser(user) {
             username: user.username,
             email: user.email,
             password: hashedPassword,
-            is_admin: Boolean,
+            is_admin: false,
         });
         //create jsonwebtoken
         const payload = {

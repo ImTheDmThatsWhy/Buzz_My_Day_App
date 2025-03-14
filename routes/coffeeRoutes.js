@@ -6,7 +6,7 @@ const {
     updateCoffee,
     deleteCoffee,
 } = require("../controllers/coffeeController");
-// const admin = require("../middleware/admin");
+const admin = require("../middleware/admin");
 
 const coffeeRouter = express.Router();
 
@@ -26,7 +26,7 @@ coffeeRouter.get("/:coffeeId", async (req, res) => {
     }
 });
 
-coffeeRouter.post("/", async (req, res) => {
+coffeeRouter.post("/", admin, async (req, res) => {
     const bodyData = {
         name: req.body.name,
         brand: req.body.brand,
@@ -39,7 +39,7 @@ coffeeRouter.post("/", async (req, res) => {
     res.status(201).json(newCoffee);
 });
 
-coffeeRouter.patch("/:coffeeId", async (req, res) => {
+coffeeRouter.patch("/:coffeeId", admin, async (req, res) => {
     const bodyData = {
         name: req.body.name,
         brand: req.body.brand,
@@ -63,7 +63,7 @@ coffeeRouter.patch("/:coffeeId", async (req, res) => {
         res.json(updatedCoffee);
     }
 });
-coffeeRouter.delete("/:coffeeId", async (req, res) => {
+coffeeRouter.delete("/:coffeeId", admin, async (req, res) => {
     const deletedCoffee = await deleteCoffee(req.params.coffeeId);
     if (deletedCoffee) {
         res.json(deletedCoffee);
