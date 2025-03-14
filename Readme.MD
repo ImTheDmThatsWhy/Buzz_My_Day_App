@@ -33,11 +33,25 @@ For this application a RESTful API will be created that follows RESTful architec
 
 ## Frameworks:
 
-For this web application the express javascript framework will be used for the application. Express according to GeeksforGeeks (2025) is a framework that sits on top of Node JS web server functionality to simplify API's and add features that Node JS does not have. Express improves an applications functionalities through the use of middleware and routing, adds useful utilities to HTTP objects, and facilitates dynamic HTTP object rendering.
+Source: GeeksforGeeks. (2020). Node.js vs Express.js. [online] Available at: https://www.geeksforgeeks.org/node-js-vs-express-js/.
+
+For this web application the express javascript framework will be used for the application. Express according to GeeksforGeeks (2020) is a framework that sits on top of Node JS web server functionality to simplify API's and add features that Node JS does not have. Express improves an applications functionalities through the use of middleware and routing, adds useful utilities to HTTP objects, and facilitates dynamic HTTP object rendering.
 
 Node JS in comparison is not a framework and is instead an open source and cross platform runtime environment. In Node JS routing is not provided, it has fewer features, no middleware and has a longer run time then Express JS. Express JS in comparison provides routing, uses middleware, provides controllers, has a shorter coding time, and is used for building web applications. Therefore, the Express JS framework will be used in the backend of this application.
 
 ## Libraries, Frameworks and Licenses
+
+### Node.js and npm
+
+Source: www.w3schools.com. (n.d.). Node.js NPM. [online] Available at: https://www.w3schools.com/nodejs/nodejs_npm.asp.
+
+-   GeeksforGeeks. (n.d.). NodeJS Tutorial | Learn NodeJS. [online] Available at: https://www.geeksforgeeks.org/nodejs/.
+
+-   Tal, L. (2020). Node.js licensing and security considerations. [online] Snyk. Available at: https://snyk.io/articles/node-js-licensing-and-security-risks/ [Accessed 14 Mar. 2025].
+
+This application will use node.js version 22.14.0. Instructions on how to install node.js and npm can be found in the following link: https://www.geeksforgeeks.org/how-to-download-and-install-node-js-and-npm/. NPM is a package manager for Node.js packages, and will be used in this application to manage Node.js packages. Node is a powerful javascript run time environment built on chrome V8 engine. Node.js will be used as it allows JavaScript code to be run outside a browser making it ideal to build scalable network applications. Node.js also enables the use of Javascript for front end and backend applications making it ideal for this application.
+
+License and Ethics: According to Tal 202o Node.js is under the MIT license which is posted below in this read me. The MIT license only requires attribution which has been done therefore there is no ethical concerns with using Node.js in this application.
 
 ### Express JS
 
@@ -388,7 +402,7 @@ Bcrypt is under the Mit license which can be found earlier in the Read Me. As th
 
 GeeksforGeeks. (2024). npm run dev. [online] Available at: https://www.geeksforgeeks.org/npm-run-dev/.
 
-This command intiates the development server that allows for reloading, hot module replacement, error handling and other efficient developmental features. This script is defined in the package.json files.
+This command intiates the development server that allows for reloading, hot module replacement, error handling and other efficient developmental features. This script is defined in the package.json files. The dev development environment is available in version 22.14.0 of node.js and is run using the npm run dev command in the terminal and through the command "node --watch source/index.js" which is in the dev of the package.json.
 
 ### Jest and Supertest
 
