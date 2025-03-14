@@ -3,6 +3,7 @@
 const mongoose = require("mongoose");
 
 // schema definition for coffee shops
+const validator = require("../function/validator");
 const coffeeSchema = new mongoose.Schema(
     {
         name: {
@@ -24,6 +25,10 @@ const coffeeSchema = new mongoose.Schema(
         cost: {
             type: Number,
             required: true,
+            validate: {
+                validator: validator.costValidation(),
+                message: "cost must be numerical only",
+            },
         },
         rating: {
             type: Number,

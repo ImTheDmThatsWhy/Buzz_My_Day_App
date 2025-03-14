@@ -1,7 +1,7 @@
 // model for user posts and content
 // contains post data and user references
 const mongoose = require("mongoose");
-
+const validator = require("../function/validator");
 const CommentSchema = mongoose.Schema({
     message: String,
 });
@@ -9,12 +9,16 @@ const CommentSchema = mongoose.Schema({
 const PostSchema = mongoose.Schema({
     title: { type: String, required: true },
     content: { type: String, required: true },
-    displayname: { type: String, required: true },
-    is_published: Boolean,
-    category_id: {
-        type: mongoose.Types.ObjectId,
-        ref: "Category",
+    displayname: {
+        type: String,
+        required: true,
+        validate: {
+            validator: validator.displaynameValidation(),
+            message: "displayname must be between 2-12 characters",
+        },
     },
+    is_published: Boolean,
+
     comments: [CommentSchema],
     user_id: {
         type: mongoose.Types.ObjectId,
@@ -26,5 +30,4 @@ const Comment = mongoose.model("Comment", CommentSchema);
 
 const Post = mongoose.model("Post", PostSchema);
 
-// export the model
-module.exports = Post;
+module.exports = { Comment, Post };

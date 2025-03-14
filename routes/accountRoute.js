@@ -9,17 +9,18 @@ const {
 } = require("../controllers/accountController");
 // use middleware so users must be authorised before updating the account
 const authorization = require("../middleware/authorization");
+const admin = require("../middleware/admin");
 
 const accountRouter = express.Router();
 
 // get accounts
-accountRouter.get("/", async (req, res) => {
+accountRouter.get("/", admin, async (req, res) => {
     const accounts = await getAccounts();
     res.json(accounts);
 });
 
 // get single account
-accountRouter.get("/:accountId", async (req, res) => {
+accountRouter.get("/:accountId", authorization, async (req, res) => {
     const account = await getAccount(req.params.accountId);
     if (account) {
         res.json(account);
@@ -31,7 +32,7 @@ accountRouter.get("/:accountId", async (req, res) => {
 });
 
 // create an account
-accountRouter.post("/", async (req, res) => {
+accountRouter.post("/", authorization, async (req, res) => {
     const bodyData = {
         email: req.body.email,
         displayname: req.body.displayname,
@@ -44,7 +45,7 @@ accountRouter.post("/", async (req, res) => {
 });
 
 // update account
-accountRouter.patch("/:accountId", async (req, res) => {
+accountRouter.patch("/:accountId", authorization, async (req, res) => {
     const bodyData = {
         email: req.body.email,
         displayname: req.body.displayname,
@@ -67,14 +68,15 @@ accountRouter.patch("/:accountId", async (req, res) => {
 });
 
 // delete account
-accountRouter.delete("/:accountId", async (req, res) => {
+accountRouter.delete("/:accountId", authorization, async (req, res) => {
     const deletedAccount = await deleteAccount(req.params.accountId);
-    if (deletedAccount) {
-        res.json(deletedAccount);
-    } else {
+
+    if (!deletedAccount) {
         res.status(404).json({
-            error: `Account with id ${req.params.accountId} not found`,
+            error: `Account with id ${req.params.accountId} does not exist`,
         });
+    } else {
+        res.json(deletedAccount);
     }
 });
 
