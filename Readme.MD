@@ -40,7 +40,13 @@ This project relies on the following which are explained in detail below:
 
 ## Style Guide
 
-This application uses the Prettier formatter as its style guide. Prettier is being used in this applicationto help maintain code consistency throughout the JavaScript project. Follow the instructions in step 6 for VS code to install prettier: https://www.geeksforgeeks.org/how-to-set-up-prettier-in-your-javascript-typescript-project/
+This application uses the Prettier formatter as its style guide. Prettier is being used in this applicationto help maintain code consistency throughout the JavaScript project. Follow the instructions in step 6 for VS code to install prettier: https://www.geeksforgeeks.org/how-to-set-up-prettier-in-your-javascript-typescript-project/.
+
+Licensing and Ethics:
+
+Source: npm. (2024). prettier. [online] Available at: https://www.npmjs.com/package/prettier.
+
+Prettier has 0 dependencies and is under the MIT license which is posted below in this
 
 ## API Design:
 
@@ -495,3 +501,67 @@ And the following dev dependencies:
 -   should
 
 License and Ethics: Supertest falls under the MIT license which has been posted already in this read me. As this is an open license there is no ethical concerns about the use of supertest in this application as I have acknowledged that supertest is under the MIT license, in accordance with the license requirements.
+
+### express-validator
+
+source: npm. (n.d.). express-validator. [online] Available at: https://www.npmjs.com/package/express-validator.
+
+Github.io. (2019). Getting Started · express-validator. [online] Available at: https://express-validator.github.io/docs/.
+
+express-validator is a set of express.js middlewares that validates and sanitizes code which is what it has been used for in this application. This includes using exoress-validator to verify email format. To install it follow instructions in the following link:https://www.npmjs.com/package/express-validator.
+
+Dependencies:
+
+To run express-validator version Node.js 14 or greater must be used
+
+Other dependencies:
+
+-   lodash
+-   validator
+
+Dev Dependencies:
+
+-   @docusaurus/core
+-   @docusaurus/plugin-client-redirects
+-   @docusaurus/preset-classic
+-   @types/jest
+-   @types/lodash
+-   @typescript-eslint/eslint-plugin
+-   @typescript-eslint/parser
+-   eslint
+-   eslint-config-prettier
+-   eslint-plugin-import
+-   eslint-plugin-prettier
+-   jest
+-   prettier
+-   ts-jest
+-   typescript
+
+express-validator is under the MIT license which has already been posted in this readme. As express-validator has been attributed in accordance with the license conditions there is no ethical concerns in using this software.
+
+### Helmet
+
+source:helmetjs.github.io. (n.d.). Helmet. [online] Available at: https://helmetjs.github.io/.
+
+-   Npmjs.com. (2022). Available at: https://www.npmjs.com/package/helmet/v/5.0.2 [Accessed 14 Mar. 2025].
+
+Helmet is being used in this application to secure the express application by setting HTTP response headers. To use and install helmet use the instructions in the following link https://www.npmjs.com/package/helmet/v/5.0.2
+
+License and dependencies: Helmet has zero dependencies but has the following Dev Dependencies:
+
+-   @rollup/plugin-typescript
+-   @types/connect
+-   @types/jest
+-   @types/supertest
+-   @typescript-eslint/eslint-plugin
+-   @typescript-eslint/parser
+-   connect
+-   eslint
+-   jest
+-   prettier
+-   rollup
+-   supertest
+-   ts-jest
+-   typescript
+
+Helmet is under the MIT license which has already been posted in this read me. As helmet has been attributed in accordance with the license conditions there is no ethical concerns in using this software.
