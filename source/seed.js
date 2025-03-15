@@ -10,7 +10,7 @@ const bcrypt = require("bcrypt");
 
 mongoose
     .connect(
-        "mongodb+srv://jackvassallo01:Xd39FxnSMQETljKV@cluster0.h2v5a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+        "mongodb+srv://SomeRandom:SomeRandom@cluster0.1mkd5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
     )
     .then(() => {
         console.log("Database connected");

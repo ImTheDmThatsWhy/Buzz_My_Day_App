@@ -75,7 +75,7 @@ app.use("/comment", commentRoute);
 app.listen(3000, async () => {
     console.log("Server started");
     await mongoose.connect(
-        "mongodb+srv://jackvassallo01:Xd39FxnSMQETljKV@cluster0.h2v5a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+        "mongodb+srv://SomeRandom:SomeRandom@cluster0.1mkd5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
     );
     console.log("Database connected");
 });

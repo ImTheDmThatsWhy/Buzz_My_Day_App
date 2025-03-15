@@ -22,7 +22,7 @@ favouriteRouter.get("/:favouriteId", authorization, async (req, res) => {
         res.json(favourite);
     } else {
         res.status(404).json({
-            error: `favourite with id ${req.params.favouriteId}`,
+            error: `favourite with id ${req.params.favouriteId}does not exist`,
         });
     }
 });

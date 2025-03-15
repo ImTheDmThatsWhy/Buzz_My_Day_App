@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
+        "start": "node source/index.js",
         "test": "jest",
         "dev": "node --watch source/index.js",
         "seed": "node source/seed.js"
