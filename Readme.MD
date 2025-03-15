@@ -2,6 +2,41 @@
 
 This app allows users to find their favourite instant coffee, read and write reviews, view coffee prices, and talk with other coffee enthusiasts.
 
+## API set up:
+
+Dependecies note: To run the API in VS code a PC with windows 10 or 11 is required.
+To run the app in VS code please note that if opening in Vs code then Ubuntu 22-.04 (WSL) must be installed to install this on a windows device go to the microsoft store and download the Ubuntu 22.04.5 LTS app.
+Then install windows terminal from the microsoft app store. Then follow the instructions in the link below https://learn.microsoft.com/en-us/windows/wsl/install.
+
+-   Once downloaded go to VS code and use the instructions from the link below to run WSL in VS code https://code.visualstudio.com/docs/remote/wsl-tutorial,
+
+Using VS code:
+To set up and run this application a user needs to perform the following steps
+
+-   Clone the code from Github by going to the link https://github.com/ImTheDmThatsWhy/Buzz_My_Day_App and click on the code button and click copy code, then in VS code click on the search bar at the top and type >Git:Clone (or go to show and run commands and search for Git:Clone and click on it) then paste the copied code into the search bar it will then prompt you to save the cloned repository to a folder
+
+-   After you have saved the repository open the folder in VS code by clicking on file open folder,
+
+-   After you have opened the folder, open up a terminal by clicking on terminal then new terminal and open up to the Ubuntu 22.04 (WSL),
+
+Note for a mac device ubuntu can also be installed using the instructions in the following link https://gbtimes.com/how-to-install-ubuntu-on-mac/
+however, the requirements listed in the instructions must be met.
+
+Vs code for Mac can also be installed.
+
+## VS code set up
+
+-   once the code has been cloned open a terminal and switch to Ubuntu-22.04(WSL)
+
+-   Install Node.js and NPM installed using the instructions in https://www.geeksforgeeks.org/how-to-download-and-install-node-js-and-npm/.
+
+-   Dependencies have been included already in the package.json file in the document
+
+-   In the event the dependancies have not been installed use the following code in the virtual environment to install them:
+    npm install
+
+-   Once installed run the app using the npm start command in the terminal.
+
 ## Product access:
 
 The Buzz My Day Application will be a standalone application hosted on a remote server and accessible to users through a web browser.
@@ -20,6 +55,10 @@ This project relies on the following which are explained in detail below:
 -   Ubuntu-22.04 WSL
 -   MongoDB
 -   Mongoose
+
+## Deploy
+
+This backend has been deployed on Render :https://buzz-my-day-app-xaqh.onrender.com
 
 ## App Functions:
 
