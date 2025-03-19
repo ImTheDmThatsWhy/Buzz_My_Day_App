@@ -14,9 +14,26 @@ const commentRoute = require("../routes/commentRoute");
 
 const app = express();
 
+const whitelist = [
+    "http://localhost:5137",
+    "https://buzz-my-day-app-xaqh.onrender.com",
+];
+let corsOption = {
+    // origin: function (origin, callback) {
+    //     if (whitelist.indexOf(origin) !== -1) {
+    //         callback(null, true);
+    //     } else {
+    //         callback(new Error("Not allowed by CORS"));
+    //     }
+    // },
+    credentials: true,
+    preflightContinue: true,
+    methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
+};
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOption));
 app.use(helmet());
+
 app.post(
     "/user/register",
     body("email").isEmail().normalizeEmail(),
@@ -31,7 +48,6 @@ app.post(
         next();
     }
 );
-
 app.post(
     "/account",
     body("email").isEmail().normalizeEmail(),
