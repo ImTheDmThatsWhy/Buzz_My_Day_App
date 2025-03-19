@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const { body, validationResult } = require("express-validator");
 const helmet = require("helmet");
+const cors = require("cors");
 
 const accountRouter = require("../routes/accountRoute");
 const coffeeRoutes = require("../routes/coffeeRoutes");
@@ -14,6 +15,7 @@ const commentRoute = require("../routes/commentRoute");
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use(helmet());
 app.post(
     "/user/register",
