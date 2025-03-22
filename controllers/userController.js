@@ -19,6 +19,17 @@ async function updateDisplayname(oldDisplayname, newDisplayname) {
     }
 }
 
+async function deleteUserByDisplayname(displayname) {
+    try {
+        const deletedUser = await User.findOneAndDelete({
+            displayname: displayname,
+        });
+        return deletedUser;
+    } catch (err) {
+        return { error: err.errors };
+    }
+}
+
 async function getUsers() {
     const users = await User.find();
     return users;
@@ -114,4 +125,5 @@ module.exports = {
     loginUser,
 
     updateDisplayname,
+    deleteUserByDisplayname,
 };

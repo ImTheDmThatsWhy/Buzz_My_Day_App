@@ -1,5 +1,8 @@
 const Account = require("../models/accountModel");
-const { updateDisplayname } = require("../controllers/userController");
+const {
+    updateDisplayname,
+    deleteUserByDisplayname,
+} = require("../controllers/userController");
 
 async function getAccounts() {
     const accounts = await Account.find();
@@ -77,6 +80,8 @@ async function deleteAccount(displayname) {
     const deletedAccount = await Account.findOneAndDelete({
         displayname: displayname,
     });
+
+    const deletedUser = await deleteUserByDisplayname(displayname);
     return deletedAccount;
 }
 
