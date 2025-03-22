@@ -6,15 +6,16 @@ const validator = require("../function/validator");
 // schema definition for user login
 const userLoginSchema = new mongoose.Schema(
     {
-        username: {
+        displayname: {
             type: String,
             validate: {
-                validator: usernameValidation(),
+                validator: displaynameValidation(),
                 message:
-                    "username must be between 2-12 characters and can only contain letters underscores, and spaces",
+                    "displayname must be between 2-12 characters and can only contain letters underscores, and spaces",
             },
             required: true,
             unique: true,
+            ref: "Account",
         },
         email: {
             type: String,
@@ -36,16 +37,16 @@ const userLoginSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
-function usernameValidation() {
-    return function (username) {
-        if (username.length < 2) {
+function displaynameValidation() {
+    return function (displayname) {
+        if (displayname.length < 2) {
             return false;
         }
-        if (username.length > 12) {
+        if (displayname.length > 12) {
             return false;
         }
         const pattern = /^[A-Za-z0-9][A-Za-z_0-9 ]+$/;
-        if (!pattern.test(username)) {
+        if (!pattern.test(displayname)) {
             return false;
         } else return true;
     };

@@ -18,6 +18,7 @@ const accountSchema = new mongoose.Schema(
                 validator: validator.displaynameValidation(),
                 message: "displayname must be between 2-12 characters",
             },
+            unique: true,
         },
         photo: {
             type: String,

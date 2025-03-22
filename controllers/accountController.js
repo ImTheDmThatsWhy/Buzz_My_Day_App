@@ -5,12 +5,8 @@ async function getAccounts() {
     return accounts;
 }
 
-async function getAccount(accountId) {
-    if (!accountId.match(/^[0-9a-fA-F]{24}$/)) {
-        // mongoose ids must match this regex
-        return false;
-    }
-    const account = await Account.findById(accountId);
+async function getAccount(displayname) {
+    const account = await Account.findOne({ displayname: displayname });
     return account;
 }
 
@@ -36,27 +32,26 @@ async function createAccount(account) {
     }
 }
 
-async function updateAccount(accountId, account) {
+async function updateAccount(displayname, account) {
     try {
-        if (!accountId.match(/^[0-9a-fA-F]{24}$/)) {
-            // mongoose ids must match this regex
-            return false;
-        }
         const existingEmail = await Account.findOne({
             email: account.email,
         });
-        if (existingEmail && existingEmail._id != accountId) {
+        if (existingEmail && existingEmail.displayname != displayname) {
             return { error: "Account with that email already exists" };
         }
 
         const existingDisplayname = await Account.findOne({
             displayname: account.displayname,
         });
-        if (existingDisplayname && existingDisplayname._id != accountId) {
+        if (
+            existingDisplayname &&
+            existingDisplayname.displayname != displayname
+        ) {
             return { error: "Account with that displayname already exists" };
         }
-        const updatedAccount = await Account.findByIdAndUpdate(
-            accountId,
+        const updatedAccount = await Account.findOneAndUpdate(
+            { displayname: displayname },
             account,
             {
                 new: true,
@@ -68,12 +63,10 @@ async function updateAccount(accountId, account) {
     }
 }
 
-async function deleteAccount(accountId) {
-    if (!accountId.match(/^[0-9a-fA-F]{24}$/)) {
-        // mongoose ids must match this regex
-        return false;
-    }
-    const deletedAccount = await Account.findByIdAndDelete(accountId);
+async function deleteAccount(displayname) {
+    const deletedAccount = await Account.findOneAndDelete({
+        displayname: displayname,
+    });
     return deletedAccount;
 }
 

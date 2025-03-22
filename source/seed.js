@@ -29,12 +29,20 @@ async function seedDatabase() {
     await UserLogin.deleteMany({});
     await Favourites.deleteMany({});
 
+    await Account.syncIndexes();
+    await Post.syncIndexes();
+    await Coffee.syncIndexes();
+    await Forum.syncIndexes();
+    await Reviews.syncIndexes();
+    await UserLogin.syncIndexes();
+    await Favourites.syncIndexes();
+
     // create hashed password
     const hashedPassword = await bcrypt.hash("adminpw", 10);
     // create a new admin
     const admin = await UserLogin.create({
         email: "admin@email.com",
-        username: "admin",
+        displayname: "admin",
         password: hashedPassword,
         is_admin: true,
     });
@@ -141,13 +149,13 @@ async function seedDatabase() {
 
     const userLogins = [
         {
-            username: "user1",
+            displayname: "user1",
             email: "user1@example.com",
             account_id: seededAccounts[0]._id,
             password: "password1",
         },
         {
-            username: "user2",
+            displayname: "user2",
             email: "user2@example.com",
             account_id: seededAccounts[1]._id,
             password: "password2",

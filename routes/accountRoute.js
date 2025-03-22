@@ -20,13 +20,13 @@ accountRouter.get("/", admin, async (req, res) => {
 });
 
 // get single account
-accountRouter.get("/:accountId", authorization, async (req, res) => {
-    const account = await getAccount(req.params.accountId);
+accountRouter.get("/:displayname", authorization, async (req, res) => {
+    const account = await getAccount(req.params.displayname);
     if (account) {
         res.json(account);
     } else {
         res.status(404).json({
-            error: `Account with id ${req.params.accountId} not found`,
+            error: `displayname ${req.params.displayname} not found`,
         });
     }
 });
@@ -45,7 +45,7 @@ accountRouter.post("/", authorization, async (req, res) => {
 });
 
 // update account
-accountRouter.patch("/:accountId", authorization, async (req, res) => {
+accountRouter.patch("/:displayname", authorization, async (req, res) => {
     const bodyData = {
         email: req.body.email,
         displayname: req.body.displayname,
@@ -54,13 +54,13 @@ accountRouter.patch("/:accountId", authorization, async (req, res) => {
         description: req.body.description,
     };
     const updatedAccount = await updateAccount(
-        req.params.accountId,
+        req.params.displayname,
         bodyData,
         req.displayname
     );
     if (!updatedAccount) {
         res.status(404).json({
-            error: `Account with id ${req.params.accountId} not found`,
+            error: `displayname ${req.params.displayname} not found`,
         });
     } else {
         res.json(updatedAccount);
@@ -68,12 +68,12 @@ accountRouter.patch("/:accountId", authorization, async (req, res) => {
 });
 
 // delete account
-accountRouter.delete("/:accountId", authorization, async (req, res) => {
-    const deletedAccount = await deleteAccount(req.params.accountId);
+accountRouter.delete("/:displayname", authorization, async (req, res) => {
+    const deletedAccount = await deleteAccount(req.params.displayname);
 
     if (!deletedAccount) {
         res.status(404).json({
-            error: `Account with id ${req.params.accountId} does not exist`,
+            error: `displayname ${req.params.displayname} does not exist`,
         });
     } else {
         res.json(deletedAccount);

@@ -1,9 +1,9 @@
 function displaynameValidation() {
-    return function (username) {
-        if (username.length < 2) {
+    return function (displayname) {
+        if (displayname.length < 2) {
             return false;
         }
-        if (username.length > 12) {
+        if (displayname.length > 12) {
             return false;
         }
     };

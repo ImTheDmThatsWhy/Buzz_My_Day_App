@@ -12,10 +12,10 @@ async function registerUser(user) {
         }
 
         const existingUser = await User.findOne({
-            username: user.username,
+            displayname: user.displayname,
         });
         if (existingUser) {
-            return { error: "Username already in use" };
+            return { error: "displayname already in use" };
         }
 
         const pattern = /^[A-Za-z0-9!#$%&?][A-Za-z_0-9!#$%&?]+$/;
@@ -33,7 +33,7 @@ async function registerUser(user) {
         const hashedPassword = await bcrypt.hash(user.password, 10);
         //user creation
         const userCreated = await User.create({
-            username: user.username,
+            displayname: user.displayname,
             email: user.email,
             password: hashedPassword,
             is_admin: false,

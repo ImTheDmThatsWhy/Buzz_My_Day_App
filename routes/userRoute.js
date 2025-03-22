@@ -6,7 +6,7 @@ const userRouter = express.Router();
 
 userRouter.post("/register", async (req, res) => {
     const bodyData = {
-        username: req.body.username,
+        displayname: req.body.displayname,
         email: req.body.email,
         password: req.body.password,
     };
