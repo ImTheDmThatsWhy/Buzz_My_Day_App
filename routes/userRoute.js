@@ -1,9 +1,24 @@
 const express = require("express");
 
-const { registerUser, loginUser } = require("../controllers/userController");
+const {
+    getUser,
+    registerUser,
+    loginUser,
+} = require("../controllers/userController");
+const authorization = require("../middleware/authorization");
 
 const userRouter = express.Router();
 
+userRouter.get("/:userId", authorization, async (req, res) => {
+    const user = await getUser(req.params.userId);
+    if (user) {
+        res.json(user);
+    } else {
+        res.status(404).json({
+            error: `user with id ${req.params.userId} not found`,
+        });
+    }
+});
 userRouter.post("/register", async (req, res) => {
     const bodyData = {
         displayname: req.body.displayname,

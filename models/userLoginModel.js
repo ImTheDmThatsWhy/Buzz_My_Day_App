@@ -37,6 +37,14 @@ const userLoginSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
+
+userLoginSchema.methods.toJSON = function () {
+    var obj = this.toObject();
+    delete obj.password;
+    delete obj.is_admin;
+    return obj;
+};
+
 function displaynameValidation() {
     return function (displayname) {
         if (displayname.length < 2) {

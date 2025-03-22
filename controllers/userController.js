@@ -2,6 +2,14 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userLoginModel");
 
+async function getUser(userId) {
+    if (!userId.match(/^[0-9a-fA-F]{24}$/)) {
+        // mongoose ids must match this regex
+        return false;
+    }
+    const user = await User.findById(userId);
+    return user;
+}
 async function registerUser(user) {
     try {
         const existingEmail = await User.findOne({
@@ -78,6 +86,7 @@ async function loginUser(user) {
 }
 
 module.exports = {
+    getUser,
     registerUser,
     loginUser,
 };
