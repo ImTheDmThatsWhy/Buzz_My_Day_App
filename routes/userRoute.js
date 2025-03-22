@@ -1,6 +1,7 @@
 const express = require("express");
 
 const {
+    getUsers,
     getUser,
     registerUser,
     loginUser,
@@ -8,6 +9,10 @@ const {
 const authorization = require("../middleware/authorization");
 
 const userRouter = express.Router();
+userRouter.get("/", async (req, res) => {
+    const users = await getUsers();
+    res.json(users);
+});
 
 userRouter.get("/:userId", authorization, async (req, res) => {
     const user = await getUser(req.params.userId);

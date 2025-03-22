@@ -2,6 +2,28 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/userLoginModel");
 
+async function updateDisplayname(oldDisplayname, newDisplayname) {
+    try {
+        const user = await User.findOne({ displayname: oldDisplayname });
+        user.displayname = newDisplayname;
+        const updatedUser = await User.findOneAndUpdate(
+            { displayname: oldDisplayname },
+            user,
+            {
+                new: true,
+            }
+        );
+        return updatedUser;
+    } catch (err) {
+        return { error: err.errors };
+    }
+}
+
+async function getUsers() {
+    const users = await User.find();
+    return users;
+}
+
 async function getUser(userId) {
     if (!userId.match(/^[0-9a-fA-F]{24}$/)) {
         // mongoose ids must match this regex
@@ -87,6 +109,9 @@ async function loginUser(user) {
 
 module.exports = {
     getUser,
+    getUsers,
     registerUser,
     loginUser,
+
+    updateDisplayname,
 };

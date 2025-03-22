@@ -60,8 +60,7 @@ accountRouter.patch("/:displayname", authorization, async (req, res) => {
     };
     const updatedAccount = await updateAccount(
         req.params.displayname,
-        bodyData,
-        req.displayname
+        bodyData
     );
     if (!updatedAccount) {
         res.status(404).json({

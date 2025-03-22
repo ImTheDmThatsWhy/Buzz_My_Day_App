@@ -1,4 +1,5 @@
 const Account = require("../models/accountModel");
+const { updateDisplayname } = require("../controllers/userController");
 
 async function getAccounts() {
     const accounts = await Account.find();
@@ -52,6 +53,7 @@ async function updateAccount(displayname, account) {
         ) {
             return { error: "Account with that displayname already exists" };
         }
+
         const updatedAccount = await Account.findOneAndUpdate(
             { displayname: displayname },
             account,
@@ -59,6 +61,12 @@ async function updateAccount(displayname, account) {
                 new: true,
             }
         );
+
+        const updatedUser = await updateDisplayname(
+            displayname,
+            account.displayname
+        );
+
         return updatedAccount;
     } catch (err) {
         return { error: err.errors };
