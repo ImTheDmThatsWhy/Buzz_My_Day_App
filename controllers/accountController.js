@@ -12,9 +12,11 @@ async function getAccount(displayname) {
 
 async function createAccount(account) {
     try {
+        console.log(account);
         const existingEmail = await Account.findOne({
             email: account.email,
         });
+        console.log(existingEmail);
         if (existingEmail) {
             return { error: "Account with that email already exists" };
         }

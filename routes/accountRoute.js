@@ -41,7 +41,12 @@ accountRouter.post("/", authorization, async (req, res) => {
         description: req.body.description,
     };
     const newAccount = await createAccount(bodyData);
-    res.status(201).json(newAccount);
+
+    if (newAccount.error) {
+        res.status(400).json(newAccount);
+    } else {
+        res.status(201).json(newAccount);
+    }
 });
 
 // update account
