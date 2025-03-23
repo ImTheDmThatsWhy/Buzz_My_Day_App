@@ -106,12 +106,18 @@ async function loginUser(user) {
         if (!isMatch) {
             return { error: "Incorrect email or password" };
         }
+
+        console.log(existingUser);
         // jsw token creation
         const payload = {
             id: existingUser._id,
         };
         const token = jwt.sign(payload, "secret");
-        return { token, user_id: existingUser._id };
+        return {
+            token,
+            user_id: existingUser._id,
+            is_admin: existingUser.is_admin,
+        };
     } catch (err) {
         console.log(err);
         return { error: err };
