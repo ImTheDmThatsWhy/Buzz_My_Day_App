@@ -22,7 +22,6 @@ async function getFavouritesByAccount(account_id) {
     }
 
     const favourites = await Favourite.find({ account_id: account_id });
-    console.log(favourites);
     const coffee_ids = [];
     for (const favourite of favourites) {
         coffee_ids.push(favourite.coffee_id);
