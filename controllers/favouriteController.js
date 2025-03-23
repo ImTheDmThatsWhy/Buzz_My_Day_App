@@ -16,18 +16,26 @@ async function getFavourite(favouriteId) {
 }
 
 async function getFavouritesByAccount(account_id) {
+    console.log("getting favourites for account");
     if (!account_id.match(/^[0-9a-fA-F]{24}$/)) {
         // mongoose ids must match this regex
         return false;
     }
 
     const favourites = await Favourite.find({ account_id: account_id });
-    const coffee_ids = [];
+    const favouriteCoffees = [];
     for (const favourite of favourites) {
-        coffee_ids.push(favourite.coffee_id);
+        favouriteCoffees.push({
+            _id: favourite._id,
+            coffee: favourite.coffee_id,
+        });
     }
 
-    const coffees = await getCoffeesById(coffee_ids);
+    const coffees = await getCoffeesById(favouriteCoffees);
+
+    for (const coffee of coffees) {
+        coffee.favourite_id = favouriteCoffees[coffee._id];
+    }
 
     return coffees;
 }

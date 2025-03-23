@@ -5,10 +5,10 @@ async function getCoffees() {
     return coffees;
 }
 
-async function getCoffeesById(coffeeIds) {
+async function getCoffeesById(favouriteCoffees) {
     const coffees = [];
-    for (const index in coffeeIds) {
-        const coffeeId = String(coffeeIds[index]);
+    for (const favouriteCoffee of favouriteCoffees) {
+        const coffeeId = String(favouriteCoffee.coffee);
         if (!coffeeId.match(/^[0-9a-fA-F]{24}$/)) {
             console.log("coffee id is invalid: " + coffeeId);
             continue;
@@ -17,7 +17,7 @@ async function getCoffeesById(coffeeIds) {
         try {
             const coffee = await Coffee.findById(coffeeId);
             if (coffee) {
-                coffees.push(coffee);
+                coffees.push({ _id: favouriteCoffee._id, coffee: coffee });
             } else {
                 console.log("Invalid coffee id: " + coffeeId);
             }
