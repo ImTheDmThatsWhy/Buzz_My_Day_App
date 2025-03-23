@@ -51,4 +51,8 @@ userRouter.post("/login", async (req, res) => {
     }
 });
 
+// userRouter.get("/admin", async(req, res) => {
+
+// })
+
 module.exports = userRouter;

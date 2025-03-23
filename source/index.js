@@ -42,7 +42,12 @@ app.post(
         if (!errors.isEmpty()) {
             // Using return and response together stops the rest of the route
             // because responding twice would cause a server error.
-            return res.status(400).json({ errors: errors.array() });
+            let allErrors = "";
+            for (let error of errors.array()) {
+                allErrors += error.path + ": " + error.msg + "\n";
+            }
+            allErrors = allErrors.slice(0, -1);
+            return res.status(400).json({ error: allErrors });
         }
 
         next();
@@ -56,7 +61,12 @@ app.post(
         if (!errors.isEmpty()) {
             // Using return and response together stops the rest of the route
             // because responding twice would cause a server error.
-            return res.status(400).json({ errors: errors.array() });
+            let allErrors = "";
+            for (let error of errors.array()) {
+                allErrors += error.path + ": " + error.msg + "\n";
+            }
+            allErrors = allErrors.slice(0, -1);
+            return res.status(400).json({ error: allErrors });
         }
 
         next();
@@ -70,7 +80,12 @@ app.patch(
         if (!errors.isEmpty()) {
             // Using return and response together stops the rest of the route
             // because responding twice would cause a server error.
-            return res.status(400).json({ errors: errors.array() });
+            let allErrors = "";
+            for (let error of errors.array()) {
+                allErrors += error.path + ": " + error.msg + "\n";
+            }
+            allErrors = allErrors.slice(0, -1);
+            return res.status(400).json({ error: allErrors });
         }
 
         next();
