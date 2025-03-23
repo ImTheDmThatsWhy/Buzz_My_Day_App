@@ -5,6 +5,29 @@ async function getCoffees() {
     return coffees;
 }
 
+async function getCoffeesById(coffeeIds) {
+    const coffees = [];
+    for (let coffeeId in coffeeIds) {
+        if (!coffeeId.match(/^[0-9a-fA-F]{24}$/)) {
+            console.log("coffee id is invalid: " + coffeeId);
+            continue;
+        }
+
+        try {
+            const coffee = await Coffee.findById(coffeeId);
+            if (coffee) {
+                coffees.push(coffee);
+            } else {
+                console.log("Invalid coffee id: " + coffeeId);
+            }
+        } catch (err) {
+            console.log(err.errors);
+        }
+    }
+
+    return coffees;
+}
+
 async function getCoffee(coffeeId) {
     if (!coffeeId.match(/^[0-9a-fA-F]{24}$/)) {
         // mongoose ids must match this regex
@@ -69,6 +92,7 @@ async function deleteCoffee(coffeeId) {
 module.exports = {
     getCoffees,
     getCoffee,
+    getCoffeesById,
     createCoffee,
     updateCoffee,
     deleteCoffee,

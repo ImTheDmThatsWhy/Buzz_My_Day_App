@@ -1,4 +1,5 @@
 const Favourite = require("../models/favouritesModel");
+const { getCoffeesById } = require("../controllers/coffeeController");
 
 async function getFavourites() {
     const favourites = await Favourite.find();
@@ -14,13 +15,21 @@ async function getFavourite(favouriteId) {
     return favourite;
 }
 
-async function getFavouritesByAccount(accountId) {
-    if (!accountId.match(/^[0-9a-fA-F]{24}$/)) {
+async function getFavouritesByAccount(account_id) {
+    if (!account_id.match(/^[0-9a-fA-F]{24}$/)) {
         // mongoose ids must match this regex
         return false;
     }
-    const favourites = await Favourite.find({ account_id: accountId });
-    return favourites;
+
+    const favourites = await Favourite.find({ account_id: account_id });
+    const coffee_ids = [];
+    for (const favourite of favourites) {
+        coffee_ids.push(favourite.coffee_id);
+    }
+
+    const coffees = await getCoffeesById(coffee_ids);
+
+    return coffees;
 }
 
 async function createFavourite(favourite) {
