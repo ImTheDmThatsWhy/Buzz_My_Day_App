@@ -7,7 +7,8 @@ async function getCoffees() {
 
 async function getCoffeesById(coffeeIds) {
     const coffees = [];
-    for (let coffeeId in coffeeIds) {
+    for (const index in coffeeIds) {
+        const coffeeId = String(coffeeIds[index]);
         if (!coffeeId.match(/^[0-9a-fA-F]{24}$/)) {
             console.log("coffee id is invalid: " + coffeeId);
             continue;
