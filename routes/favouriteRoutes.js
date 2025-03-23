@@ -3,6 +3,7 @@ const express = require("express");
 const {
     getFavourites,
     getFavourite,
+    getFavouritesByAccount,
     createFavourite,
     updateFavourite,
     deleteFavourite,
@@ -26,6 +27,18 @@ favouriteRouter.get("/:favouriteId", authorization, async (req, res) => {
         });
     }
 });
+
+favouriteRouter.get("/account/:accountId", authorization, async (req, res) => {
+    const favourites = await getFavouritesByAccount(req.params.accountId);
+    if (favourites) {
+        res.json(favourites);
+    } else {
+        res.status(404).json({
+            error: `failed to get favourites for account ${req.params.accountId}`,
+        });
+    }
+});
+
 favouriteRouter.post("/", authorization, async (req, res) => {
     const bodyData = {
         coffee_id: req.body.coffee_id,

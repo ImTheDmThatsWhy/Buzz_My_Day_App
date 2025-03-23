@@ -14,6 +14,15 @@ async function getFavourite(favouriteId) {
     return favourite;
 }
 
+async function getFavouritesByAccount(accountId) {
+    if (!accountId.match(/^[0-9a-fA-F]{24}$/)) {
+        // mongoose ids must match this regex
+        return false;
+    }
+    const favourites = await Favourite.find({ account_id: accountId });
+    return favourites;
+}
+
 async function createFavourite(favourite) {
     try {
         if (!favourite.coffee_id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -86,6 +95,7 @@ async function deleteFavourite(favouriteId) {
 module.exports = {
     getFavourites,
     getFavourite,
+    getFavouritesByAccount,
     createFavourite,
     updateFavourite,
     deleteFavourite,
