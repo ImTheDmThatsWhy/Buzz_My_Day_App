@@ -7,6 +7,7 @@ const {
     loginUser,
 } = require("../controllers/userController");
 const authorization = require("../middleware/authorization");
+const admin = require("../middleware/admin");
 
 const userRouter = express.Router();
 userRouter.get("/", async (req, res) => {
@@ -51,8 +52,8 @@ userRouter.post("/login", async (req, res) => {
     }
 });
 
-// userRouter.get("/admin", async(req, res) => {
-
-// })
+userRouter.post("/admin", admin, async (req, res) => {
+    res.status(200).json();
+});
 
 module.exports = userRouter;

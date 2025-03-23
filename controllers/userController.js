@@ -116,7 +116,6 @@ async function loginUser(user) {
         return {
             token,
             user_id: existingUser._id,
-            is_admin: existingUser.is_admin,
         };
     } catch (err) {
         console.log(err);
