@@ -1,9 +1,9 @@
 services:
   express:
-    build: .
+    build: ./backend
     ports:
     - "3000:3000"
     env_file:
-    - .env
+    - ./backend/.env
     image: asutton/buzzmydayexpressapi:1.0
 
