@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const { body, validationResult } = require("express-validator");
 const helmet = require("helmet");
 const cors = require("cors");
+require ("dotenv").config();
 
 const accountRouter = require("../routes/accountRoute");
 const coffeeRoutes = require("../routes/coffeeRoutes");
@@ -108,7 +109,7 @@ app.use("/comment", commentRoute);
 app.listen(3000, async () => {
     console.log("Server started");
     await mongoose.connect(
-        "mongodb+srv://SomeRandom:SomeRandom@cluster0.1mkd5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+        process.env.DATABASE_URL
     );
     console.log("Database connected");
 });

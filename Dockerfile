@@ -13,6 +13,9 @@ COPY package*.json /.
 RUN npm install
 
 # copy the remainder of the hosts source code
-COPY source ./src
+COPY . .
 
-CMD ["node", "src/index.js"]
+# Expose the port
+EXPOSE 3000
+
+CMD ["node", "source/index.js"]
