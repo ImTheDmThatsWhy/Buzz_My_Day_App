@@ -1,0 +1,20 @@
+:root {
+  font-family: "inter";
+  line-height: 1.5;
+  font-weight: 400;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.parent-container {
+  display: flex;
+  justify-content: space-between;
+  min-height: 100vh;
+  flex-direction: column;
+  overflow-y: auto;
+}
+footer {
+  margin-top: auto;
+}

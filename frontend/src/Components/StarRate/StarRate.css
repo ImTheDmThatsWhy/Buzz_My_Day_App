@@ -1,0 +1,15 @@
+input[type="radio"] {
+  display: none;
+}
+.star {
+  cursor: pointer;
+}
+
+.input-box-star {
+  width: 300px;
+  height: 100px;
+}
+.field-mess {
+  width: 300px;
+  height: 70px;
+}

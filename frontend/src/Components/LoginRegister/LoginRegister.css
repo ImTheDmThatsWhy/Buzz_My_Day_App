@@ -1,0 +1,112 @@
+.container {
+  width: 300px;
+  margin: 40px auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+img.icon {
+  width: 50px;
+  height: 50px;
+}
+
+.register {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.underline {
+  width: 80px;
+  background: #ddd;
+  height: 3px;
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 0 10px;
+}
+
+.input input {
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #333;
+  font-size: 16px;
+}
+
+.Submit_container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.button {
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4a4a4a;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s;
+}
+
+.button:hover {
+  background-color: #333;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 400px;
+    padding: 30px;
+  }
+
+  .register {
+    font-size: 2rem;
+  }
+
+  .underline {
+    width: 100px;
+  }
+
+  .input {
+    height: 50px;
+  }
+
+  .button {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+  }
+}
