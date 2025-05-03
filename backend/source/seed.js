@@ -38,10 +38,10 @@ async function seedDatabase() {
     await Favourites.syncIndexes();
 
     // create hashed password
-    const hashedPassword = await bcrypt.hash(process.env.PASSWORD, 10);
+    const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, 10);
     // create a new admin
     const admin = await UserLogin.create({
-        email: "admin@email.com",
+        email: process.env.ADMIN_EMAIL,
         displayname: "admin",
         password: hashedPassword,
         is_admin: true,
