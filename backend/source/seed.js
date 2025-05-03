@@ -10,7 +10,7 @@ const bcrypt = require("bcrypt");
 
 mongoose
     .connect(
-        "mongodb+srv://SomeRandom:SomeRandom@cluster0.1mkd5.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+        `mongodb://mongo:27017`
     )
     .then(() => {
         console.log("Database connected");
@@ -38,7 +38,7 @@ async function seedDatabase() {
     await Favourites.syncIndexes();
 
     // create hashed password
-    const hashedPassword = await bcrypt.hash("adminpw", 10);
+    const hashedPassword = await bcrypt.hash(process.env.PASSWORD, 10);
     // create a new admin
     const admin = await UserLogin.create({
         email: "admin@email.com",

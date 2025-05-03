@@ -18,4 +18,4 @@ COPY . .
 # Expose the port
 EXPOSE 3000
 
-CMD ["node", "source/index.js"]
+CMD ["sh", "-c", "npm run seed && node source/index.js"]

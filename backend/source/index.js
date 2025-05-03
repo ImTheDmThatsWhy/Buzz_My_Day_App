@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const { body, validationResult } = require("express-validator");
-const helmet = require("helmet");
 const cors = require("cors");
 require ("dotenv").config();
 
@@ -33,7 +32,6 @@ let corsOption = {
 };
 app.use(express.json());
 app.use(cors(corsOption));
-app.use(helmet());
 
 app.post(
     "/user/register",
@@ -106,7 +104,7 @@ app.use("/review", reviewRoute);
 app.use("/user", userRoute);
 app.use("/comment", commentRoute);
 
-app.listen(3000, async () => {
+app.listen(process.env.PORT, async () => {
     console.log("Server started");
     await mongoose.connect(
         process.env.DATABASE_URL
