@@ -25,7 +25,7 @@ jobs:
         context: backend/
         file: backend/Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/express-api:latest
+        tags: aasquith/express-api:latest
     - name: build and push frontend
       id: frontend-build-and-push
       uses: docker/build-push-action@v3
@@ -33,4 +33,4 @@ jobs:
         context: frontend/
         file: frontend/Dockerfile
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/react-app-frontend:latest
+        tags: aasquith/react-app-frontend:latest
