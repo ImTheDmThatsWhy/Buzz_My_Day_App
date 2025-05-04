@@ -18,4 +18,5 @@ COPY . .
 # Expose the port
 EXPOSE 3000
 
-CMD ["sh", "-c", "npm run seed && node source/index.js"]
+# sh and -c allows another terminal to open so that all three commands run
+CMD ["sh", "-c", "npm run test && npm run seed && npm run dev"]

@@ -38,6 +38,7 @@ services:
       - frontend
     depends_on:
       - express
+    image: asutton/buzzmydayreactapp:1.0
 volumes:
   mongo-data:
     driver: local
