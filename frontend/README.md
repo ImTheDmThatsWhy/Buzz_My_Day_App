@@ -1,3 +1,17 @@
+# Docker instructions
+- Before running containers create admin secrets by creating two files in a folder called .secrets file names are admin_email and admin_password
+- Then in those files put in the admin email and password respectively
+- to build and run the containers use the following code: docker compose up --build
+
+To run backend seperately create a .env.local in the backend folder
+
+- needs to contain PORT, DATABASE_URL, ADMIN_PASSWORD and ADMIN_EMAIL
+- change directory to backend by typing cd backend in terminal then type npm run dev.
+
+To run front end seperately type cd frontend then npm run dev into the terminal
+
+
+
 # Introduction to Buzz My Day Application
 
 https://buzzmydaycoffee.netlify.app/
