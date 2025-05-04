@@ -7,10 +7,11 @@ const Reviews = require("../models/reviewsModel");
 const UserLogin = require("../models/userLoginModel");
 const Favourites = require("../models/favouritesModel");
 const bcrypt = require("bcrypt");
+require("dotenv").config({path: ".env.local"});
 
 mongoose
     .connect(
-        `mongodb://mongo:27017`
+        process.env.DATABASE_URL
     )
     .then(() => {
         console.log("Database connected");

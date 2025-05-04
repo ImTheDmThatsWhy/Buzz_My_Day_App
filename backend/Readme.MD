@@ -622,3 +622,24 @@ License and dependencies: Helmet has zero dependencies but has the following Dev
 -   typescript
 
 Helmet is under the MIT license which has already been posted in this read me. As helmet has been attributed in accordance with the license conditions there is no ethical concerns in using this software.
+
+## CORS 
+
+Source 1: GeeksforGeeks (2024). HTTP Access Control (CORS). [online] GeeksforGeeks. Available at: https://www.geeksforgeeks.org/http-access-control-cors/.
+
+Source 2: npm. (n.d.). cors. [online] Available at: https://www.npmjs.com/package/cors.
+
+Cors stands for cross origin resource sharing and denies or allows requests for resources across different domains. CORS is used in this web app to allow HTTP requests from the front end to go to the backend. To install CORS follow instructions from https://www.npmjs.com/package/cors
+
+### Dependencies:
+- object-assign
+- vary
+### Dev Dependencies:
+- after
+- eslint
+- express
+- mocha
+- nyc
+- supertest
+### License and ethics:
+ CORS falls under the MIT license which has been posted already in this read me. As this is an open license there is no ethical concerns about the use of CORS in this application as I have acknowledged that CORS is under the MIT license, in accordance with the license requirements.

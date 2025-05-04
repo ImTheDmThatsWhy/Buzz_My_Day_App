@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const { body, validationResult } = require("express-validator");
 const cors = require("cors");
-require ("dotenv").config();
+require("dotenv").config({path: ".env.local"});
 
 const accountRouter = require("../routes/accountRoute");
 const coffeeRoutes = require("../routes/coffeeRoutes");
@@ -104,7 +104,7 @@ app.use("/review", reviewRoute);
 app.use("/user", userRoute);
 app.use("/comment", commentRoute);
 
-app.listen(process.env.PORT, async () => {
+const server = app.listen(process.env.PORT, async () => {
     console.log("Server started");
     await mongoose.connect(
         process.env.DATABASE_URL
@@ -119,3 +119,5 @@ app.get("*", (request, response) => {
         attemptedPath: request.path,
     });
 });
+
+module.exports = server

@@ -18,7 +18,7 @@ COPY . .
 # Build the app
 RUN npm run build
 
-# Step 2: Use an Nginx image to serve the static files
+# code below from Mustapha, O. (2024). How to Deploy a Vite React App using Nginx server? - Ouali Mustapha - Medium. [online] Medium. Available at: https://dev-mus.medium.com/how-to-deploy-a-vite-react-app-using-nginx-server-d7190a29d8cd [Accessed 4 May 2025].
 FROM nginx:alpine
 
 COPY --from=builder /app/nginx /etc/nginx/conf.d
