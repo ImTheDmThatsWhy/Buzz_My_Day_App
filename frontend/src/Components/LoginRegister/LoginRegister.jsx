@@ -61,6 +61,7 @@ const LoginRegister = () => {
         });
         setLoginUser({ email: "", password: "" });
         setSuccess("successfully logged in");
+        setError("")
         setHasLoggedIn(true);
       } catch (error) {
         if (error.response?.data)
