@@ -13,10 +13,12 @@
     "@fontsource/inter": "^5.2.5",
     "axios": "^1.8.4",
     "classname_corrector_react": "^1.0.0",
+    "jest": "^29.7.0",
     "prettier": "^3.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.3.0"
+    "react-router-dom": "^7.3.0",
+    "supertest": "^7.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
