@@ -1,0 +1,27 @@
+services:
+  client:
+    build:
+       context: coffee_front_end/
+    container_name: react-frontend-application
+    ports:
+      - "5173:80"
+    networks:
+      - frontend
+    image: asutton/react 
+volumes:
+  mongo-data:
+    driver: local
+networks:
+  backend:
+    driver: bridge
+  frontend:
+    driver: bridge
+secrets:
+  admin_email:
+    file: .secrets/admin_email
+  admin_password:
+    file: .secrets/admin_password
+
+
+
+

@@ -1,29 +1,69 @@
+# Human-friendly name to show up in the GitHub repo Actions dashboard
 name: Run Tests
 
+# Events or triggers that will activate this workflow
 on:
-  push:
-    branches: [main]
-  pull_request:
+    # Push to the main branch
+    push:
+        branches: [main]
+    # Various pull request events that target the main branch
+    pull_request:
+        branches: [main]
 
+# Define 1 or more batches of terminal commands 
 jobs:
-  test:
-    runs-on: ubuntu-latest
 
-    steps:
-      - name: Setup Actions for our repository
-        uses: actions/checkout@v4.2.2
+    job_id:
+      runs-on: ubuntu-latest
+      permissions:
+        contents: 'read'
+        id-token: 'write'
 
-      - name: Set up Node
-        uses: actions/setup-node@v4.4.0
+      steps:
+      - id: 'checkout'
+        uses: 'actions/checkout@v4'
+
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v2'
         with:
-          node-version: latest
+          workload_identity_provider: 'projects/666463318322/locations/global/workloadIdentityPools/github/providers/my-repo'
 
-      - name: Install Dependencies
-        run: npm install
+      - id: 'upload-file'
+        uses: 'google-github-actions/upload-cloud-storage@v2'
+        with:
+          path: '/path/to/file' # Need to change
+          destination: 'bucket-name' # Need to change
 
-      - name: Run Tests
-        run: npm run test
+    # Job ID 
+    test:
 
-      
+        # The OS that the job will run on
+        # Ubuntu, MacOs, Windows, 
+        runs-on: ubuntu-latest
 
-        
+        defaults:
+          run:
+            working-directory: ./coffee_front_end
+
+        # The individual commands to run one after the other 
+        # within the job
+        steps:
+
+            # Copying the repo contents into the job runner
+            - name: Checkout code
+              uses: actions/checkout@v4.2.2
+
+            #   Install NodeJS into the job runner so we can do our NPM commands
+            - name: Set up Node.js
+              uses: actions/setup-node@v4.1.0
+              with:
+                node-version: 'latest'
+            
+            # Prepare the runner workspace with our project's dependencies
+            - name: Install dependencies
+              run: npm install
+
+            # Run our specific test command
+            - name: Run tests
+              run: npm test
+            

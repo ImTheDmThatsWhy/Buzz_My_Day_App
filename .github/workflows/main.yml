@@ -30,7 +30,7 @@ jobs:
       id: frontend-build-and-push
       uses: docker/build-push-action@v3
       with:
-        context: frontend/
-        file: frontend/Dockerfile
+        context: coffee_front_end/
+        file: coffee_front_end/Dockerfile
         push: true
         tags: aasquith/react-app-frontend:latest
