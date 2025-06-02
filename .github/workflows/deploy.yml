@@ -9,9 +9,9 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
 
-    # defaults:
-    #   run:
-    #     working-directory: ./coffee_front_end
+    defaults:
+      run:
+        working-directory: ./coffee_front_end
 
     steps:
       - uses: actions/checkout@v4.2.2
