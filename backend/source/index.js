@@ -30,6 +30,7 @@ let corsOption = {
     preflightContinue: true,
     methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
 };
+
 app.use(express.json());
 app.use(cors(corsOption));
 app.get('/api/data', (req, res) => {
