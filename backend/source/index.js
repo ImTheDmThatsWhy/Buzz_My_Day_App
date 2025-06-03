@@ -12,6 +12,8 @@ const reviewRoute = require("../routes/reviewRoute");
 const userRoute = require("../routes/userRoute");
 const commentRoute = require("../routes/commentRoute");
 
+const app = express();
+
 const whitelist = [
     "http://localhost:5137",
     "https://buzz-my-day-app-xaqh.onrender.com",
@@ -31,13 +33,6 @@ let corsOption = {
 
 app.use(express.json());
 app.use(cors(corsOption));
-app.get('/api/data', (req, res) => {
-res.json({ message: 'This is CORS-enabled for all origins!' });
-});
-
-app.listen(3000, () => {
-console.log('Server running on port 3000');
-});
 
 app.post(
     "/user/register",
