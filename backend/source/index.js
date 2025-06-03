@@ -12,8 +12,6 @@ const reviewRoute = require("../routes/reviewRoute");
 const userRoute = require("../routes/userRoute");
 const commentRoute = require("../routes/commentRoute");
 
-const app = express();
-
 const whitelist = [
     "http://localhost:5137",
     "https://buzz-my-day-app-xaqh.onrender.com",
