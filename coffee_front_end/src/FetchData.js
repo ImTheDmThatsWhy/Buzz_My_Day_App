@@ -4,7 +4,7 @@ function FetchData() {
   const [records, setRecords] = useState([]);
 
   useEffect(() => {
-    fetch('https://buzz-my-day-app-xaqh.onrender.com/coffee')
+    fetch('http://localhost:3000/coffee')
       .then((response) => response.json())
       .then((data) => setRecords({ data }))
       .catch((err) => console.log(err));
