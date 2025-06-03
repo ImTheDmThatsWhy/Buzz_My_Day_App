@@ -43,8 +43,8 @@ jobs:
       
       - name: Push to docker hub
         run: |
-             docker push aasquith/productivity-app:client-${{github.run_number}}
-             docker push aasquith/productivity-app:server-${{github.run_number}}
+             docker push aasquith/buzz-my-day-app:client-${{github.run_number}}
+             docker push aasquith/buzz-my-day-app:server-${{github.run_number}}
     
         
  
