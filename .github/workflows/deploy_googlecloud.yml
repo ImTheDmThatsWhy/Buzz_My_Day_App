@@ -26,6 +26,31 @@ jobs:
         working-directory: ./backend
         run: npm install
             
+      - name: Build Frontend docker image
+        working-directory: ./coffee_front_end
+        run: docker build -t r aasquith/buzz-my-day-app:client-${{github.run_number}} .
+
+      - name: Build backend docker image
+        working-directory: ./backend
+        run: docker build -t r aasquith/buzz-my-day-app:server-${{github.run_number}} .
+
+      
+      - name: docker login
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Push to docker hub
+        run: docker push aasquith/productivity-app:client-${{github.run_number}}
+             docker push aasquith/productivity-app:server-${{github.run_number}}
+    
+        
+ 
+
+
+
+
 
     
         
