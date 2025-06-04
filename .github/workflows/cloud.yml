@@ -7,7 +7,7 @@ env:
   PROJECT_ID: buzzmydayapp
   GAR_NAME: mern-stack-containers
   GAR_LOCATION: australia-southeast2
-  SERVICE: Mern Stack App 
+  SERVICE: MernStackApp 
   REGION: us-central1
 
 jobs:
