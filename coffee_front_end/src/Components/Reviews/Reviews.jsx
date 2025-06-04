@@ -6,7 +6,7 @@ function Reviews() {
   const [records, setRecords] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/review")
+    fetch(import.meta.env.VITE_API_ENDPOINT + '/review')
       .then((response) => response.json())
       .then((data) => setRecords(data))
       .catch((err) => console.log(err));

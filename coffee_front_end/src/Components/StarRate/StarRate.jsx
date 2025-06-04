@@ -9,7 +9,7 @@ function StarRate() {
   const [selectedCoffee, setSelectedCoffee] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/coffee")
+    fetch(import.meta.env.VITE_API_ENDPOINT + '/coffee')
       .then((response) => response.json())
       .then((data) => setRecords(data))
       .catch((err) => console.log(err));
