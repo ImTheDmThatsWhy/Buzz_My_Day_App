@@ -114,14 +114,15 @@ const server = app.listen(process.env.PORT, async () => {
     );
     console.log("Database connected");
 });
-//The code below is to catch incorrect routes for example cofee instead of coffee
-app.get("*", (request, response) => {
-    console.log("User attempted to visit" + request.path);
-    response.json({
-        message: "page not found",
-        attemptedPath: request.path,
-    });
-});
+
+// //The code below is to catch incorrect routes for example cofee instead of coffee
+// app.get("*", (request, response) => {
+//     console.log("User attempted to visit" + request.path);
+//     response.json({
+//         message: "page not found",
+//         attemptedPath: request.path,
+//     });
+// });
 
 app.use(express.static(path.resolve(__dirname, "dist")))
 
