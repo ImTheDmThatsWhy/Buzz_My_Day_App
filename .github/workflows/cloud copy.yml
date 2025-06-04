@@ -2,7 +2,7 @@ name: Build and Deploy to Cloud Run
 
 on:
   push:
-    branches:  "cloud" 
+    branches:  "cloudCopy" 
 env:
   PROJECT_ID: buzzmydayapp
   GAR_NAME: mern-stack-containers
