@@ -28,16 +28,8 @@ jobs:
             
       - name: Build Frontend docker image
         working-directory: ./coffee_front_end
-        run: | 
-             docker build -t aasquith/buzz-my-day-app:client-${{github.run_number}} .
-             echo "Docker image tagged as: $FULL_IMAGE_NAME"
-             read -p "Do you want to push this image? (y/n): 
-      
-              if [[ "$confirm" != "yes" ]]; then
-                echo "Push canceled by user."
-                exit 1
-              fi
-                  
+        run: docker build -t aasquith/buzz-my-day-app:client-${{github.run_number}} .
+           
 
       - name: Build backend docker image
         working-directory: ./backend
