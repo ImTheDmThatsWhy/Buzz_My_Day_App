@@ -12,7 +12,7 @@ function authorization(req, res, next) {
     // Attempt to verify token using secret key, if verification successful, then payload received
     // To handle errors if token has been tampered with try block has been used
     try {
-        const payload = jwt.verify(token, "secret");
+        const payload = jwt.verify(token, process.env.JWT_SECRET);
         req.userID = payload.id;
         next();
     } catch (err) {

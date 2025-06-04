@@ -6,7 +6,7 @@ on:
 env:
   PROJECT_ID: buzzmydayapp
   GAR_NAME: mern-stack-containers
-  GAR_LOCATION: sdwqs
+  GAR_LOCATION: australia-southeast2
   SERVICE: Mern Stack App 
   REGION: us-central1
 
@@ -34,7 +34,7 @@ jobs:
 
       - name: Build and Push Container
         run: |-
-          docker build --build-arg VITE_API_ENDPOINT=${{ secrets.VITE_API_ENDPOINT }} -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.GAR_NAME }}/${{ env.SERVICE }}:${{ github.sha }}" ./
+          docker build --build-arg -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.GAR_NAME }}/${{ env.SERVICE }}:${{ github.sha }}" ./
           docker push "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.GAR_NAME }}/${{ env.SERVICE }}:${{ github.sha }}"
 
       - name: Deploy to Cloud Run
@@ -43,7 +43,7 @@ jobs:
         with:
           env_vars: |-
             JWT_SECRET=${{ secrets.JWT_SECRET }}
-            MONGO_URI=${{ secrets.MONGO_URI }}
+            DATABASE_URL=${{ secrets.DATABASE_URL }}
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
           image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.GAR_NAME }}/${{ env.SERVICE }}:${{ github.sha }}

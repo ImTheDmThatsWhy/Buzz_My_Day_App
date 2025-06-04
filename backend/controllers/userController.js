@@ -83,7 +83,7 @@ async function registerUser(user) {
         const payload = {
             id: userCreated._id,
         };
-        const token = jwt.sign(payload, "secret");
+        const token = jwt.sign(payload, process.env.JWT_SECRET);
         return { token: token, user_id: userCreated._id };
     } catch (err) {
         if (err.errors) return { error: err.errors };
@@ -112,7 +112,7 @@ async function loginUser(user) {
         const payload = {
             id: existingUser._id,
         };
-        const token = jwt.sign(payload, "secret");
+        const token = jwt.sign(payload, process.env.JWT_SECRET);
         return {
             token,
             user_id: existingUser._id,

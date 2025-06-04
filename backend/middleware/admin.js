@@ -9,7 +9,7 @@ const admin = async (req, res, next) => {
         return res.status(401).json({ error: "Unauthenticated" });
     }
     try {
-        const payload = jwt.verify(token, "secret");
+        const payload = jwt.verify(token, process.env.JWT_SECRET);
         const user = await User.findById(payload.id);
         if (!user.is_admin) {
             throw new Error();
