@@ -24,6 +24,6 @@ COPY ./backend ./
 
 RUN rm -rf ./dist
 
-RUN mv ../frontend/dist ./
+RUN mv ../frontend/dist ./source/dist
 
 CMD [ "npm", "start" ]
