@@ -12,6 +12,8 @@ const reviewRoute = require("../routes/reviewRoute");
 const userRoute = require("../routes/userRoute");
 const commentRoute = require("../routes/commentRoute");
 
+const path = require("path")
+
 const app = express();
 
 const whitelist = [
@@ -35,7 +37,7 @@ app.use(express.json());
 app.use(cors(corsOption));
 
 app.post(
-    "/user/register",
+    path.join(process.env.VITE_API_ENDPOINT, "/user/register"),
     body("email").isEmail().normalizeEmail(),
     (req, res, next) => {
         const errors = validationResult(req);
@@ -54,7 +56,7 @@ app.post(
     }
 );
 app.post(
-    "/account",
+    path.join(process.env.VITE_API_ENDPOINT, "/account"),
     body("email").isEmail().normalizeEmail(),
     (req, res, next) => {
         const errors = validationResult(req);
@@ -73,7 +75,7 @@ app.post(
     }
 );
 app.patch(
-    "/account/:accountId",
+    path.join(process.env.VITE_API_ENDPOINT, "/account/:accountId"),
     body("email").isEmail().normalizeEmail(),
     (req, res, next) => {
         const errors = validationResult(req);
@@ -97,13 +99,13 @@ app.use((error, req, res, next) => {
     res.status(error.status || 500).json({ message: "internal server error" });
 });
 
-app.use("/account", accountRouter);
-app.use("/coffee", coffeeRoutes);
-app.use("/favourite", favouriteRoutes);
-app.use("/post", postRoute);
-app.use("/review", reviewRoute);
-app.use("/user", userRoute);
-app.use("/comment", commentRoute);
+app.use(path.join(process.env.VITE_API_ENDPOINT, "/account"), accountRouter);
+app.use(path.join(process.env.VITE_API_ENDPOINT, "/coffee"), coffeeRoutes);
+app.use(path.join(process.env.VITE_API_ENDPOINT, "/favourite"), favouriteRoutes);
+app.use(path.join(process.env.VITE_API_ENDPOINT, "/post"), postRoute);
+app.use(path.join(process.env.VITE_API_ENDPOINT, "/review"), reviewRoute);
+app.use(path.join(process.env.VITE_API_ENDPOINT, "/user"), userRoute);
+app.use(path.join(process.env.VITE_API_ENDPOINT, "/comment"), commentRoute);
 
 const server = app.listen(process.env.PORT, async () => {
     console.log("Server started");
@@ -120,5 +122,11 @@ app.get("*", (request, response) => {
         attemptedPath: request.path,
     });
 });
+
+app.use(express.static(path.resolve(__dirname, "dist")))
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist/index.html"))
+})
 
 module.exports = server
