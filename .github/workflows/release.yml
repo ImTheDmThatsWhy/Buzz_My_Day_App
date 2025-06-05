@@ -10,7 +10,7 @@ jobs:
             - uses: actions/checkout@v4.2.2
             
             - name: Create Folder
-              run: sync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' 
+              run: sync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ./release
             
             - name: Switch to folder
               run: |
@@ -20,5 +20,5 @@ jobs:
               uses: anothrNick/github-tag-action@master
              
         env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           TOKEN: ${{ secrets.TOKEN }}
            REPO_OWNER: ImTheDmThatsWhy
