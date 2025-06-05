@@ -12,17 +12,6 @@ on:
 
 # Define 1 or more batches of terminal commands 
 jobs:
-
-    job_id:
-      runs-on: ubuntu-latest
-      permissions:
-        contents: 'read'
-        id-token: 'write'
-
-      steps:
-      - id: 'checkout'
-        uses: 'actions/checkout@v4'
-
     # Job ID 
     test:
 
@@ -55,14 +44,15 @@ jobs:
             # Run our specific test command
             - name: Run tests
               run: npm test
-
-            - id: 'google-cloud-auth'
+              
+            - name: Google Auth
+              id: 'google-cloud-auth'
               uses: 'google-github-actions/auth@v2'
               if: ${{ !cancelled() }}
               with:
-                workload_identity_provider: 'projects/666463318322/locations/global/workloadIdentityPools/github/providers/my-repo'
+                credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
-            - id: 'upload-log-folder'
+            - name: Upload log folder
               uses: 'google-github-actions/upload-cloud-storage@v2'
               if: ${{ !cancelled() && steps.google-cloud-auth.outcome == 'success' }}
               with:
