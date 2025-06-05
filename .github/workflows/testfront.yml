@@ -56,6 +56,6 @@ jobs:
               uses: 'google-github-actions/upload-cloud-storage@v2'
               if: ${{ !cancelled() && steps.google-cloud-auth.outcome == 'success' }}
               with:
-                path: '/output/*'
+                path: ${{ './output/*' }} 
                 destination: 'buzz-my-day-app-test-logs'
             
