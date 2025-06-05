@@ -45,6 +45,7 @@ jobs:
             - name: Run tests
               run: npm test
               
+            # Login to google
             - name: Google Auth
               id: 'google-cloud-auth'
               uses: 'google-github-actions/auth@v2'
@@ -52,7 +53,8 @@ jobs:
               with:
                 credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
-            - name: Upload log folder
+            # Upload log file
+            - name: Upload log file
               uses: 'google-github-actions/upload-cloud-storage@v2'
               if: ${{ !cancelled() && steps.google-cloud-auth.outcome == 'success' }}
               with:
