@@ -37,6 +37,13 @@ jobs:
           docker build --build-arg VITE_API_ENDPOINT=${{ secrets.VITE_API_ENDPOINT }} -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.GAR_NAME }}/${{ env.SERVICE }}:${{ github.sha }}" ./
           docker push "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.GAR_NAME }}/${{ env.SERVICE }}:${{ github.sha }}"
 
+         
+      - name: Create release to Cloud Deploy
+        uses: gcp-clouddeploy-ecosystem/release-clouddeploy@main
+        with:
+             release: release-01
+             delivery-pipeline: cloud
+
       - name: Deploy to Cloud Run
         id: deploy
         uses: google-github-actions/deploy-cloudrun@v2
