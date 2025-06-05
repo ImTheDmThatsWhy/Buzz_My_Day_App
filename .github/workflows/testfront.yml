@@ -58,4 +58,5 @@ jobs:
               with:
                 path: ${{ './coffee_front_end/output' }} 
                 destination: 'buzz-my-day-app-test-logs'
+                process_gcloudignore: false
             
