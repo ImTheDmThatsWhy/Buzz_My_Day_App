@@ -1,0 +1,24 @@
+name: Create Zip
+on:
+    push:
+        branches:
+            - cloud
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4.2.2
+            
+            - name: Create Folder
+              run: sync -arv --exclude='.git/' --exclude='.github/' --exclude='.gitignore' . ./release
+            
+            - name: Switch to folder
+              run: |
+               cd release
+               ls-la
+            - name: Bump Version and push tag
+              uses: anothrNick/github-tag-action@master
+             
+        env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           REPO_OWNER: ImTheDmThatsWhy
