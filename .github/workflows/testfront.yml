@@ -56,7 +56,9 @@ jobs:
               uses: 'google-github-actions/upload-cloud-storage@v2'
               if: ${{ !cancelled() && steps.google-cloud-auth.outcome == 'success' }}
               with:
-                path: './coffee_front_end/output/*.json'
+                path: './coffee_front_end/output'
+                glob: '*.json'
                 destination: 'buzz-my-day-app-test-logs/frontend'
+                parent: false
                 process_gcloudignore: false
             
