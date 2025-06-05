@@ -47,11 +47,13 @@ jobs:
       # - name: Archive Build
       #   run: zip -r build.zip . -i dist/cloud.yml
       
-      - name: Upload Artifact 
-        uses: actions/upload-pages-artifact@v3
-        with:
-          name: workflow file
-          path: dist/cloud.yml
+      - name: create zip
+        run: Compress-Archive -Path folder/* -Destination new.zip
+      # - name: Upload Artifact 
+      #   uses: actions/upload-pages-artifact@v3
+      #   with:
+      #     name: workflow file
+      #     path: dist/cloud.yml
          
       # - name: Create release to Cloud Deploy
       #   uses: gcp-clouddeploy-ecosystem/release-clouddeploy@main
