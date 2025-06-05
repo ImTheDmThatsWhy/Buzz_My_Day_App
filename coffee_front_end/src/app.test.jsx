@@ -20,7 +20,7 @@ test("Nav: renders navigation links", () => {
 
 test("Footer: renders copyright information", () => {
   render(<Footer />);
-  expect(screen.getByText("Coyright SiteName 2025")).toBeInTheDocument();
+  expect(screen.getByText("Copyright SiteName 2025")).toBeInTheDocument();
 });
 
 test("Contact: renders contact form heading", () => {
