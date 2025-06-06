@@ -57,6 +57,8 @@ jobs:
             - name: Run tests
               working-directory: ./backend
               run: npm test
+              env: # Or as an environment variable
+                vite_api_endpoint: ${{ secrets.VITE_API_ENDPOINT }}
               
             # Login to google
             - name: Google Auth
