@@ -12,7 +12,7 @@ const reviewRoute = require("../routes/reviewRoute");
 const userRoute = require("../routes/userRoute");
 const commentRoute = require("../routes/commentRoute");
 
-const path = require("path")
+const path = require("path");
 
 const app = express();
 

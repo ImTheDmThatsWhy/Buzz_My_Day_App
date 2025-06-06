@@ -8,8 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-coffee_front_end/html
-coffee_front_end/output
+output/
 dist-ssr
 *.local
 

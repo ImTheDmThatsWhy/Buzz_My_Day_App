@@ -3,6 +3,9 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = require("../index.js");
 
+const path = require("path");
+const apiEndpoint = process.env.VITE_API_ENDPOINT
+
 // mock test data
 const testCoffee = {
     name: "Test Coffee",
@@ -114,7 +117,7 @@ describe("Express App", () => {
     // test get account
     test("GET /account without admin authorisation should return 401", async () => {
         try {
-            const response = await request(app).get("/account");
+            const response = await request(app).get(path.join(apiEndpoint, "/account"));
             expect(response.statusCode).toBe(401);
         } catch (error) {
             throw error;
@@ -124,7 +127,7 @@ describe("Express App", () => {
     // test get coffee
     test("GET /coffee should return 200", async () => {
         try {
-            const response = await request(app).get("/coffee");
+            const response = await request(app).get(path.join(apiEndpoint, "/coffee"));
             expect(response.statusCode).toBe(200);
         } catch (error) {
             throw error;
@@ -141,7 +144,7 @@ describe("Express App", () => {
             };
 
             const response = await request(app)
-                .post("/favourite")
+                .post(path.join(apiEndpoint, "/favourite"))
                 .send(newFavourite);
 
             expect(response.statusCode).toBe(401);
@@ -164,7 +167,7 @@ describe("Express App", () => {
             };
 
             const response = await request(app)
-                .patch(`/post/${createdPostId}`)
+                .patch(path.join(apiEndpoint, "post", createdPostId))
                 .send(updateData);
 
             expect(response.statusCode).toBe(401);
@@ -182,7 +185,7 @@ describe("Express App", () => {
             }
 
             const response = await request(app).delete(
-                `/coffee/${createdCoffeeId}`
+                path.join(apiEndpoint, "coffee", createdCoffeeId)
             );
 
             expect(response.statusCode).toBe(401);
