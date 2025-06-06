@@ -2,6 +2,7 @@ const request = require("supertest");
 const express = require("express");
 const mongoose = require("mongoose");
 const app = require("../index.js");
+require("dotenv").config({path: ".env.local"});
 
 const path = require("path");
 const apiEndpoint = process.env.VITE_API_ENDPOINT
