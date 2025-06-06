@@ -18,7 +18,7 @@ jobs:
         # The OS that the job will run on
         # Ubuntu, MacOs, Windows, 
         runs-on: ubuntu-latest
-        environment: test
+        environment: production
 
         # defaults:
           # run:
