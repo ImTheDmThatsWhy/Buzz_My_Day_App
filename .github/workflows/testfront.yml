@@ -54,6 +54,11 @@ jobs:
               working-directory: ./coffee_front_end
               run: npm test
 
+            - name: Create backend env file
+              run: |
+                touch .env
+                echo VITE_API_KEY=${{ secrets.VITE_API_KEY }} >> .env 
+
             - name: Run tests
               working-directory: ./backend
               run: npm test
