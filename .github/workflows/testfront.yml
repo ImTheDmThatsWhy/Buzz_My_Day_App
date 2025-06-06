@@ -57,7 +57,7 @@ jobs:
             - name: Create backend env file
               run: |
                 touch .env
-                echo VITE_API_KEY=${{ secrets.VITE_API_KEY }} >> .env 
+                echo VITE_API_ENDPOINT=${{ secrets.VITE_API_ENDPOINT }} >> .env 
 
             - name: Run tests
               working-directory: ./backend
