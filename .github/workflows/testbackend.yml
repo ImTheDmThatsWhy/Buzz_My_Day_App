@@ -1,5 +1,5 @@
 # Human-friendly name to show up in the GitHub repo Actions dashboard
-name: Run Tests
+name: backendtests
 
 # Events or triggers that will activate this workflow
 on:

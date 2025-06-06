@@ -1,8 +1,10 @@
 name: Build and Deploy to Cloud Run
 
 on:
-  push:
-    branches:  "cloud" 
+  workflow_run:
+    workflows:  [Run Tests]
+    types:
+      - completed 
 env:
   PROJECT_ID: buzzmydayapp
   GAR_NAME: mern-stack-containers
@@ -11,7 +13,8 @@ env:
   REGION: us-central1
 
 jobs:
-  deploy:
+  auto_deploy:
+    if: ${{github.event.workflow_run.conclusion == 'success' }}
 
     
     environment: production
@@ -24,22 +27,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.2.2
       
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: latest
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: latest
       
-      - name: Install Dependencies frontend
-        working-directory: ./coffee_front_end
-        run: npm install
+      # - name: Install Dependencies frontend
+      #   working-directory: ./coffee_front_end
+      #   run: npm install
   
-      - name: Install Dependencies backend
-        working-directory: ./backend
-        run: npm install
+      # - name: Install Dependencies backend
+      #   working-directory: ./backend
+      #   run: npm install
 
-      - name: Run tests
-        run: npm run test --if-present
-        continue-on-error: true
+      # - name: Run tests
+      #   run: npm run test --if-present
+      #   continue-on-error: true
 
 
       # - name: Generate File for Workflow
