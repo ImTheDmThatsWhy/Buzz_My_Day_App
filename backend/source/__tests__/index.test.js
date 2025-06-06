@@ -2,7 +2,6 @@ const request = require("supertest");
 const express = require("express");
 const mongoose = require("mongoose");
 const app = require("../index.js");
-require("dotenv").config({path: ".env.local"});
 
 const path = require("path");
 const apiEndpoint = process.env.VITE_API_ENDPOINT
@@ -74,7 +73,16 @@ describe("Express App", () => {
         }
     }, 15000);
 
+    const OLD_ENV = process.env;
+
+    beforeEach(() => {
+        jest.resetModules() // Most important - it clears the cache
+        process.env = { ...OLD_ENV }; // Make a copy
+    });
+
     afterAll(async () => {
+        process.env = OLD_ENV; // Restore old environment
+
         try {
             // cleanup favourite
             if (mongoose.connection.models.Favourite && favouriteId) {
