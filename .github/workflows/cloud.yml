@@ -12,15 +12,35 @@ env:
 
 jobs:
   deploy:
+
+    
     environment: production
     permissions:
       contents: 'read'
       id-token: 'write'
-
+   
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4.2.2
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: latest
+      
+      - name: Install Dependencies frontend
+        working-directory: ./coffee_front_end
+        run: npm install
+  
+      - name: Install Dependencies backend
+        working-directory: ./backend
+        run: npm install
+
+      - name: Run tests
+        run: npm run test --if-present
+        continue-on-error: true
+
 
       # - name: Generate File for Workflow
       #   run: |
@@ -47,8 +67,8 @@ jobs:
       # - name: Archive Build
       #   run: zip -r build.zip . -i dist/cloud.yml
       
-      - name: create zip
-        run: Compress-Archive -Path folder/* -Destination new.zip
+      # - name: create zip
+      #   run: Compress-Archive -Path folder/* -Destination new.zip
       # - name: Upload Artifact 
       #   uses: actions/upload-pages-artifact@v3
       #   with:
