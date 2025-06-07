@@ -1,5 +1,5 @@
 # Human-friendly name to show up in the GitHub repo Actions dashboard
-name: backendtests
+name: Run tests
 
 # Events or triggers that will activate this workflow
 on:
@@ -20,10 +20,6 @@ jobs:
         runs-on: ubuntu-latest
         environment: production
 
-        defaults:
-          run:
-            working-directory: ./backend
-
         # The individual commands to run one after the other 
         # within the job
         steps:
@@ -39,15 +35,26 @@ jobs:
                 node-version: 'latest'
             
             # Prepare the runner workspace with our project's dependencies
-            - name: Install dependencies
+            - name: Install frontend dependencies
+              working-directory: ./coffee_front_end
+              run: npm install
+
+            - name: Install backend dependencies
+              working-directory: ./backend
               run: npm install
 
             # Run our specific test command
-            - name: Run tests
+            - name: Run frontend tests
+              working-directory: ./coffee_front_end
+              run: npm test
+            
+            - name: Run backend tests
+              working-directory: ./backend
               run: npm test
               env:
                 VITE_API_ENDPOINT: ${{ secrets.VITE_API_ENDPOINT }}
                 DATABASE_URL: ${{ secrets.DATABASE_URL }}
+              
               
             # Login to google
             - name: Google Auth
@@ -57,8 +64,20 @@ jobs:
               with:
                 credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
-            # Upload log file
-            - name: Upload log file
+            # Upload front-end log file
+            - name: Upload frontend log file
+              uses: 'google-github-actions/upload-cloud-storage@v2'
+              if: ${{ !cancelled() && steps.google-cloud-auth.outcome == 'success' }}
+              with:
+                path: './coffee_front_end/output'
+                glob: '*.json'
+                destination: 'buzz-my-day-app-test-logs/frontend'
+                parent: false
+                process_gcloudignore: false
+            
+            # Upload backend log file
+            
+            - name: Upload back log file
               uses: 'google-github-actions/upload-cloud-storage@v2'
               if: ${{ !cancelled() && steps.google-cloud-auth.outcome == 'success' }}
               with:
