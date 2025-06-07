@@ -5,10 +5,10 @@ name: backendtests
 on:
     # Push to the main branch
     push:
-        branches: [main]
+        branches: [cloud]
     # Various pull request events that target the main branch
     pull_request:
-        branches: [main]
+        branches: [cloud]
 
 # Define 1 or more batches of terminal commands 
 jobs:
