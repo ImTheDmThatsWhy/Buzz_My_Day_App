@@ -2,7 +2,7 @@ name: Build and Deploy to Cloud Run
 
 on:
   workflow_run:
-    workflows:  ["Run tests", "backendtests"]
+    workflows:  ["Run tests"]
     types:
       - completed 
 env:
