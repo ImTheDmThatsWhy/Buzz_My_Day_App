@@ -63,6 +63,8 @@ jobs:
             - name: Run tests
               working-directory: ./backend
               run: npm test
+              env:
+                VITE_API_ENDPOINT: ${{ secrets.VITE_API_ENDPOINT }}
               
             # Login to google
             - name: Google Auth
