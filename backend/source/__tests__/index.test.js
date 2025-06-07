@@ -28,80 +28,80 @@ let createdPostId;
 let favouriteId;
 
 describe("Express App", () => {
-    beforeAll(async () => {
-        try {
-            // setup account
-            try {
-                if (mongoose.connection.models.Account) {
-                    const Account = mongoose.connection.models.Account;
-                    const testAccountDoc = await Account.create(testAccount);
-                    createdAccountId = testAccountDoc._id.toString();
-                }
-            } catch (error) {
-                console.error("db error:", error.message);
-            }
+    // beforeAll(async () => {
+    //     try {
+    //         // setup account
+    //         try {
+    //             if (mongoose.connection.models.Account) {
+    //                 const Account = mongoose.connection.models.Account;
+    //                 const testAccountDoc = await Account.create(testAccount);
+    //                 createdAccountId = testAccountDoc._id.toString();
+    //             }
+    //         } catch (error) {
+    //             console.error("db error:", error.message);
+    //         }
 
-            // setup coffee
-            try {
-                if (mongoose.connection.models.Coffee) {
-                    const Coffee = mongoose.connection.models.Coffee;
-                    const testCoffeeDoc = await Coffee.create(testCoffee);
-                    createdCoffeeId = testCoffeeDoc._id.toString();
-                }
-            } catch (error) {
-                console.error("db error:", error.message);
-            }
+    //         // setup coffee
+    //         try {
+    //             if (mongoose.connection.models.Coffee) {
+    //                 const Coffee = mongoose.connection.models.Coffee;
+    //                 const testCoffeeDoc = await Coffee.create(testCoffee);
+    //                 createdCoffeeId = testCoffeeDoc._id.toString();
+    //             }
+    //         } catch (error) {
+    //             console.error("db error:", error.message);
+    //         }
 
-            // setup post
-            try {
-                if (mongoose.connection.models.Post) {
-                    const Post = mongoose.connection.models.Post;
-                    const testPost = {
-                        title: "Test Post",
-                        content: "This is a test post",
-                        author: createdAccountId || "placeholder-id",
-                        displayname: "Test Display"
-                    };
-                    const testPostDoc = await Post.create(testPost);
-                    createdPostId = testPostDoc._id.toString();
-                }
-            } catch (error) {
-                console.error("db error:", error.message);
-            }
-        } catch (error) {
-            console.error("db error:", error.message);
-        }
-    }, 15000);
+    //         // setup post
+    //         try {
+    //             if (mongoose.connection.models.Post) {
+    //                 const Post = mongoose.connection.models.Post;
+    //                 const testPost = {
+    //                     title: "Test Post",
+    //                     content: "This is a test post",
+    //                     author: createdAccountId || "placeholder-id",
+    //                     displayname: "Test Display"
+    //                 };
+    //                 const testPostDoc = await Post.create(testPost);
+    //                 createdPostId = testPostDoc._id.toString();
+    //             }
+    //         } catch (error) {
+    //             console.error("db error:", error.message);
+    //         }
+    //     } catch (error) {
+    //         console.error("db error:", error.message);
+    //     }
+    // }, 15000);
 
     afterAll(async () => {
         try {
-            // cleanup favourite
-            if (mongoose.connection.models.Favourite && favouriteId) {
-                await mongoose.connection.models.Favourite.findByIdAndDelete(
-                    favouriteId
-                );
-            }
+    //         // cleanup favourite
+    //         if (mongoose.connection.models.Favourite && favouriteId) {
+    //             await mongoose.connection.models.Favourite.findByIdAndDelete(
+    //                 favouriteId
+    //             );
+    //         }
 
-            // cleanup post
-            if (mongoose.connection.models.Post && createdPostId) {
-                await mongoose.connection.models.Post.findByIdAndDelete(
-                    createdPostId
-                );
-            }
+    //         // cleanup post
+    //         if (mongoose.connection.models.Post && createdPostId) {
+    //             await mongoose.connection.models.Post.findByIdAndDelete(
+    //                 createdPostId
+    //             );
+    //         }
 
-            // cleanup coffee
-            if (mongoose.connection.models.Coffee && createdCoffeeId) {
-                await mongoose.connection.models.Coffee.findByIdAndDelete(
-                    createdCoffeeId
-                );
-            }
+    //         // cleanup coffee
+    //         if (mongoose.connection.models.Coffee && createdCoffeeId) {
+    //             await mongoose.connection.models.Coffee.findByIdAndDelete(
+    //                 createdCoffeeId
+    //             );
+    //         }
 
-            // cleanup account
-            if (mongoose.connection.models.Account && createdAccountId) {
-                await mongoose.connection.models.Account.findByIdAndDelete(
-                    createdAccountId
-                );
-            }
+    //         // cleanup account
+    //         if (mongoose.connection.models.Account && createdAccountId) {
+    //             await mongoose.connection.models.Account.findByIdAndDelete(
+    //                 createdAccountId
+    //             );
+    //         }
 
             // disconnect db
             if (mongoose.connection.readyState !== 0) {
@@ -116,6 +116,8 @@ describe("Express App", () => {
 
     // test get account
     test("GET /account without admin authorisation should return 401", async () => {
+        
+        
         try {
             const response = await request(app).get(path.join(apiEndpoint, "/account"));
             expect(response.statusCode).toBe(401);
