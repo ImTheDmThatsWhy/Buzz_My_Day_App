@@ -1,7 +1,6 @@
 const request = require("supertest");
 const express = require("express");
 const mongoose = require("mongoose");
-require("dotenv").config({path: ".env.local"});
 const app = require("../index.js");
 
 const path = require("path");
