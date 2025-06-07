@@ -15,7 +15,7 @@ jobs:
             - name: Switch to folder
               run: |
                cd release
-               ls-la
+               ls -la
             - name: Bump Version and push tag
               uses: anothrNick/github-tag-action@master
              
