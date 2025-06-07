@@ -12,34 +12,13 @@ on:
 
 # Define 1 or more batches of terminal commands 
 jobs:
-
-    job_id:
-      runs-on: ubuntu-latest
-      permissions:
-        contents: 'read'
-        id-token: 'write'
-
-      steps:
-      - id: 'checkout'
-        uses: 'actions/checkout@v4'
-
-      - id: 'auth'
-        uses: 'google-github-actions/auth@v2'
-        with:
-          workload_identity_provider: 'projects/666463318322/locations/global/workloadIdentityPools/github/providers/my-repo'
-
-      - id: 'upload-file'
-        uses: 'google-github-actions/upload-cloud-storage@v2'
-        with:
-          path: '/path/to/file' # Need to change
-          destination: 'bucket-name' # Need to change
-
     # Job ID 
     test:
 
         # The OS that the job will run on
         # Ubuntu, MacOs, Windows, 
         runs-on: ubuntu-latest
+        environment: production
 
         defaults:
           run:
