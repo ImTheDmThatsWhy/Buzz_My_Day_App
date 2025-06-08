@@ -1,3 +1,8 @@
+# CI/CD Info
+For all information about the CI/CD workflows in this application click on the following PDF link [here](./PDF/CI-CD%20information.pdf)
+
+
+
 # Docker instructions
 - Before running containers create admin secrets by creating two files in a folder called .secrets file names are admin_email and admin_password
 - Then in those files put in the admin email and password respectively
