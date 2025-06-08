@@ -10,7 +10,7 @@ jobs:
             - uses: actions/checkout@v4.2.2
             
             - name: Create Folder
-              run: rsync -arv ./github/workflows ./workflows
+              run: rsync -arv ./.github/workflows ./workflows
             
             - name: Switch to folder
               run: |
