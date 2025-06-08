@@ -18,7 +18,7 @@ jobs:
         with:
           github_token: ${{ secrets.GH_TOKEN }}
 
-      - name: Create Github Release
+      - name: GitHub Release
         uses: elgohr/Github-Release-Action@release-20241111151247
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
