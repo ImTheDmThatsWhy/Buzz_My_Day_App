@@ -18,12 +18,13 @@ jobs:
                ls -la
 
             - name: Zip Folder
-              run: zip -r workflows.zip .
+              run: zip -r workflows.zip ./workflows
 
             - name: Bump Version and push tag
               uses: anothrNick/github-tag-action@master
               env:
                 TAG_PREFIX: workflows_v
+                SOURCE: ./workflows
              
         env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
