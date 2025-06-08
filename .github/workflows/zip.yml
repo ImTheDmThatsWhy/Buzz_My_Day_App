@@ -1,0 +1,30 @@
+name: Create Zip
+on:
+    push:
+        branches:
+            - main
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4.2.2
+            
+            - name: Create Folder
+              run: rsync -arv ./github/workflows ./workflows
+            
+            - name: Switch to folder
+              run: |
+               cd release
+               ls -la
+
+            - name: Zip Folder
+              run: zip -r workflows.zip .
+
+            - name: Bump Version and push tag
+              uses: anothrNick/github-tag-action@master
+              env:
+                TAG_PREFIX: workflows_v
+             
+        env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           REPO_OWNER: ImTheDmThatsWhy
