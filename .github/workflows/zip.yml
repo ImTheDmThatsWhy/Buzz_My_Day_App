@@ -14,7 +14,7 @@ jobs:
             
             - name: Switch to folder
               run: |
-               cd release
+               cd workflows
                ls -la
 
             - name: Zip Folder
